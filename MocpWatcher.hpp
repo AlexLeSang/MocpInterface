@@ -21,7 +21,10 @@ public:
 signals:
     
 public slots:
-    void interruptReadLoop() { interruptFlag = true; }
+    void    interruptReadLoopSlot() { interruptFlag = true; }
+
+    void    stopServerSlot();
+    void    startServerSlot();
 };
 
 #endif // MOCPWATCHER_HPP

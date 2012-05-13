@@ -2,7 +2,7 @@
 
 #include "InterfaceWidget.hpp"
 
-MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : /*QObject( qobject_cast<QObject *> (interface) ),*/ interfaceWidget(interface) {
+MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
     args << "-i";
     interruptFlag = false;
@@ -29,10 +29,14 @@ void MocpWatcher::run() {
 
         if ( out.isEmpty() ) {
             interfaceWidget->displayServerStatus( OFF );
+            interfaceWidget->displayComposition("");
+            interfaceWidget->displayTime("00:00/00:00");
+            interfaceWidget->disableStopServerAction();
             continue;
         }
         else {
             interfaceWidget->displayServerStatus( ON );
+            interfaceWidget->disableStartServerAction();
         }
 
         if ( out.indexOf( "State: STOP" ) != -1 ) {
@@ -55,8 +59,19 @@ void MocpWatcher::run() {
         timeLeft = out.mid(timeLeftPos + 10, timeLeftEndPos - 11 - timeLeftPos);
         interfaceWidget->displayComposition(artist + ": " + song);
         interfaceWidget->displayTime(timeLeft + "/" + totalTime);
-
     }
 }
 
+void MocpWatcher::stopServerSlot() {
+    QStringList stopList;
+    stopList << "-x";
+    QProcess::startDetached( mocp, stopList );
+    interfaceWidget->disableStopServerAction();
+}
 
+void MocpWatcher::startServerSlot() {
+    QStringList stopList;
+    stopList << "-S";
+    QProcess::startDetached( mocp, stopList );
+    interfaceWidget->disableStartServerAction();
+}

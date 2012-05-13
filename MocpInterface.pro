@@ -20,3 +20,8 @@ HEADERS  += InterfaceWidget.hpp \
     MocpWatcher.hpp
 
 FORMS    += InterfaceWidget.ui
+
+RESOURCES += \
+    pictures.qrc
+
+QMAKE_CXXFLAGS += -std=c++0x
