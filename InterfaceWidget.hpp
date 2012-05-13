@@ -45,6 +45,8 @@ public:
     void    displayComposition( QString composition );
     void    displayTime( QString time );
 
+    void    mousePressEvent( QMouseEvent * ) { showHideSlot(); }
+
 public slots:
     void    disableStartServerAction() { startServerAction->setDisabled( true ); stopServerAction->setEnabled( true ); openMocpAction->setEnabled( true );  }
     void    disableStopServerAction() { stopServerAction->setDisabled( true ); startServerAction->setEnabled( true ); openMocpAction->setDisabled( true ); }
