@@ -20,13 +20,16 @@ void MocpWatcher::run() {
     QString song;
     QString totalTime;
     QString timeLeft;
+    QByteArray outputByteArray;
 
     while( !interruptFlag ) {
         sleep( 1 );
 
         process->start( mocp, args );
         process->waitForFinished();
-        out = ( process->readAll() );
+        outputByteArray = process->readAll();
+        out = QString::fromUtf8(outputByteArray.data(),outputByteArray.size());
+//        out = ( process->readAll() );
 
         if ( out.isEmpty() ) {
             interfaceWidget->displayServerStatus( OFF );
