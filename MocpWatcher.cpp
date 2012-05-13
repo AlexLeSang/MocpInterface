@@ -4,6 +4,7 @@
 
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
+    x_terminal_emulator = "xterm -geometry 200x40+0+0 ";
     args << "-i";
     interruptFlag = false;
 }
@@ -74,4 +75,8 @@ void MocpWatcher::startServerSlot() {
     stopList << "-S";
     QProcess::startDetached( mocp, stopList );
     interfaceWidget->disableStartServerAction();
+}
+
+void MocpWatcher::openMocpSlot() {
+    QProcess::startDetached( x_terminal_emulator + " " + mocp  );
 }

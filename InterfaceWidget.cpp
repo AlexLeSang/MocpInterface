@@ -10,10 +10,11 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     startServerAction = new QAction( tr("S&tart server"), contextMenu );
     closeAction = new QAction( tr("&Close"), contextMenu );
     showHideAction = new QAction( tr("Show/&hide"), contextMenu );
-
+    openMocpAction = new QAction( tr("Open mocp"), contextMenu );
 
     contextMenu->addAction( showHideAction );
     contextMenu->addSeparator();
+    contextMenu->addAction( openMocpAction );
     contextMenu->addAction( startServerAction );
     contextMenu->addAction( stopServerAction );
     contextMenu->addSeparator();
@@ -24,7 +25,7 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     connect( stopServerAction, SIGNAL( triggered() ), watcher, SLOT( stopServerSlot() ) );
     connect( startServerAction, SIGNAL( triggered() ), watcher, SLOT( startServerSlot() ) );
     connect( showHideAction, SIGNAL( triggered() ), this, SLOT( showHideSlot() ) );
-
+    connect( openMocpAction, SIGNAL( triggered() ), watcher, SLOT( openMocpSlot() ) );
 
     connect( closeAction, SIGNAL( triggered() ), qApp, SLOT( quit() ) );
 

@@ -33,6 +33,7 @@ class InterfaceWidget : public QWidget {
     QAction * startServerAction;
     QAction * closeAction;
     QAction * showHideAction;
+    QAction * openMocpAction;
 
     MocpWatcher * watcher;
 
@@ -45,8 +46,8 @@ public:
     void    displayTime( QString time );
 
 public slots:
-    void    disableStartServerAction() { startServerAction->setDisabled( true ); stopServerAction->setEnabled( true ); }
-    void    disableStopServerAction() { stopServerAction->setDisabled( true ); startServerAction->setEnabled( true ); }
+    void    disableStartServerAction() { startServerAction->setDisabled( true ); stopServerAction->setEnabled( true ); openMocpAction->setEnabled( true );  }
+    void    disableStopServerAction() { stopServerAction->setDisabled( true ); startServerAction->setEnabled( true ); openMocpAction->setDisabled( true ); }
 
 private:
     Ui::InterfaceWidget *ui;
