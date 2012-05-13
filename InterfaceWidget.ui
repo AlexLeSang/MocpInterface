@@ -65,6 +65,10 @@
   <property name="windowTitle">
    <string>Mocp interface</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="pictures.qrc">
+    <normaloff>:/icons/mocp_icon.png</normaloff>:/icons/mocp_icon.png</iconset>
+  </property>
   <property name="windowOpacity">
    <double>0.850000000000000</double>
   </property>
@@ -133,6 +137,9 @@
       <property name="contextMenuPolicy">
        <enum>Qt::NoContextMenu</enum>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
+      </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
@@ -172,6 +179,8 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="pictures.qrc"/>
+ </resources>
  <connections/>
 </ui>

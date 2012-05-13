@@ -83,6 +83,7 @@ void InterfaceWidget::displayTime(QString time) {
     ui->timeLabel->setText(time);
 }
 
+
 void InterfaceWidget::showHideSlot() {
     if ( isVisible() ) {
         hide();
