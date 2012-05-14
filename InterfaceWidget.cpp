@@ -1,6 +1,10 @@
 #include "InterfaceWidget.hpp"
 #include "ui_InterfaceWidget.h"
 
+/**
+ * @brief InterfaceWidget::InterfaceWidget
+ * @param parent
+ */
 InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip ), ui( new Ui::InterfaceWidget ) {
     ui->setupUi(this);
 
@@ -45,6 +49,9 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     watcher->start();
 }
 
+/**
+ * @brief InterfaceWidget::~InterfaceWidget
+ */
 InterfaceWidget::~InterfaceWidget() {
     watcher->interruptReadLoopSlot();
     while ( watcher->isRunning() ) {
@@ -54,19 +61,27 @@ InterfaceWidget::~InterfaceWidget() {
     delete ui;
 }
 
+/**
+ * @brief InterfaceWidget::displayServerStatus
+ * @param serverStatus
+ */
 void InterfaceWidget::displayServerStatus(SERVER_STATUS serverStatus) {
     switch ( serverStatus ) {
     case OFF:
-        this->ui->serverStateLabel->setText("Off");
+        ui->serverStateLabel->setText( tr("Off") );
         break;
     case ON:
-        this->ui->serverStateLabel->setText("On");
+        ui->serverStateLabel->setText( tr("On") );
         break;
     default:
         break;
     }
 }
 
+/**
+ * @brief InterfaceWidget::displayComposition
+ * @param composition
+ */
 void InterfaceWidget::displayComposition(QString composition) {
     if ( composition.size() > OPTIMAL_COMPOSITION_NAME_LENGHT ) {
         QString shortComposition = composition.mid( 0, OPTIMAL_COMPOSITION_NAME_LENGHT - 3 );
@@ -79,11 +94,35 @@ void InterfaceWidget::displayComposition(QString composition) {
     trayIcon->setToolTip( composition );
 }
 
+/**
+ * @brief InterfaceWidget::displayTime
+ * @param time
+ */
 void InterfaceWidget::displayTime(QString time) {
     ui->timeLabel->setText(time);
 }
 
+/**
+ * @brief InterfaceWidget::disableStartServerAction
+ */
+void InterfaceWidget::disableStartServerAction() {
+    startServerAction->setDisabled( true );
+    stopServerAction->setEnabled( true );
+    openMocpAction->setEnabled( true );
+}
 
+/**
+ * @brief InterfaceWidget::disableStopServerAction
+ */
+void InterfaceWidget::disableStopServerAction() {
+    stopServerAction->setDisabled( true );
+    startServerAction->setEnabled( true );
+    openMocpAction->setDisabled( true );
+}
+
+/**
+ * @brief InterfaceWidget::showHideSlot
+ */
 void InterfaceWidget::showHideSlot() {
     if ( isVisible() ) {
         hide();
@@ -92,6 +131,11 @@ void InterfaceWidget::showHideSlot() {
         show();
     }
 }
+
+/**
+ * @brief InterfaceWidget::trayIconClicked
+ * @param reason
+ */
 
 void InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) {
     switch ( reason ) {

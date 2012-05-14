@@ -1,7 +1,10 @@
 #include "MocpWatcher.hpp"
-
 #include "InterfaceWidget.hpp"
 
+/**
+ * @brief MocpWatcher::MocpWatcher
+ * @param interface
+ */
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
     x_terminal_emulator = "xterm -geometry 200x40+0+0 ";
@@ -9,10 +12,16 @@ MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interfa
     interruptFlag = false;
 }
 
+/**
+ * @brief MocpWatcher::~MocpWatcher
+ */
 MocpWatcher::~MocpWatcher() {
     delete process;
 }
 
+/**
+ * @brief MocpWatcher::run
+ */
 void MocpWatcher::run() {
     process = new QProcess;
     QString out;
@@ -29,7 +38,6 @@ void MocpWatcher::run() {
         process->waitForFinished();
         outputByteArray = process->readAll();
         out = QString::fromUtf8(outputByteArray.data(),outputByteArray.size());
-//        out = ( process->readAll() );
 
         if ( out.isEmpty() ) {
             interfaceWidget->displayServerStatus( OFF );
@@ -66,6 +74,18 @@ void MocpWatcher::run() {
     }
 }
 
+/**
+ * Set interrupt flag and stop watch loop
+ *
+ * @brief MocpWatcher::interruptReadLoopSlot
+ */
+void MocpWatcher::interruptReadLoopSlot() {
+   interruptFlag = true;
+}
+
+/**
+ * @brief MocpWatcher::stopServerSlot
+ */
 void MocpWatcher::stopServerSlot() {
     QStringList stopList;
     stopList << "-x";
@@ -73,6 +93,9 @@ void MocpWatcher::stopServerSlot() {
     interfaceWidget->disableStopServerAction();
 }
 
+/**
+ * @brief MocpWatcher::startServerSlot
+ */
 void MocpWatcher::startServerSlot() {
     QStringList stopList;
     stopList << "-S";
@@ -80,6 +103,9 @@ void MocpWatcher::startServerSlot() {
     interfaceWidget->disableStartServerAction();
 }
 
+/**
+ * @brief MocpWatcher::openMocpSlot
+ */
 void MocpWatcher::openMocpSlot() {
     QProcess::startDetached( x_terminal_emulator + " " + mocp  );
 }
