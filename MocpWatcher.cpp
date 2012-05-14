@@ -66,7 +66,7 @@ void MocpWatcher::run() {
         int fileNamePos = out.indexOf("File:") + 6;
 
         fileName = out.mid(fileNamePos, out.indexOf( "Title:" ) - 1 - fileNamePos);
-        fileName = fileName.mid(fileName.lastIndexOf("/")+1,fileName.length() - fileName.lastIndexOf("/") - 4);
+        fileName = fileName.mid(fileName.lastIndexOf("/")+1,fileName.length() - fileName.lastIndexOf("/") - 5);
         artist = out.mid ( artistStartPos, songStartPos - artistStartPos - 1 ) ;
         song = out.mid( songStartPos + 11, songEndPos - ( songStartPos + 11 ) );
 
@@ -77,9 +77,9 @@ void MocpWatcher::run() {
         totalTime = out.mid(totalTimePos + 11, timeLeftPos - 12 - totalTimePos);
         timeLeft = out.mid(timeLeftPos + 10, timeLeftEndPos - 11 - timeLeftPos);
         if (! (artist.isEmpty() && song.isEmpty()))
-        interfaceWidget->displayComposition(artist + ": " + song);
+            interfaceWidget->displayComposition(artist + ": " + song);
         else
-        interfaceWidget->displayComposition(fileName);
+            interfaceWidget->displayComposition(fileName.replace(" - ",": "));
         interfaceWidget->displayTime(timeLeft + "/" + totalTime);
     }
 }
@@ -90,7 +90,7 @@ void MocpWatcher::run() {
 * @brief MocpWatcher::interruptReadLoopSlot
 */
 void MocpWatcher::interruptReadLoopSlot() {
-  interruptFlag = true;
+    interruptFlag = true;
 }
 
 /**
