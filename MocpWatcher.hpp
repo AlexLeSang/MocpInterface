@@ -9,12 +9,7 @@ class InterfaceWidget;
 
 class MocpWatcher : public QThread {
     Q_OBJECT
-    QProcess * process;
-    InterfaceWidget * interfaceWidget;
-    QString mocp;
-    QString x_terminal_emulator;
-    QStringList args;
-    bool interruptFlag;
+
 public:
     explicit MocpWatcher( InterfaceWidget * interface );
     ~MocpWatcher();
@@ -22,13 +17,18 @@ public:
 signals:
     
 public slots:
-    void    interruptReadLoopSlot() { interruptFlag = true; }
-
+    void    interruptReadLoopSlot();
     void    stopServerSlot();
     void    startServerSlot();
     void    mocpPlay();
-    //void    mocpPlay();
     void    openMocpSlot();
+private:
+    QProcess * process;
+    InterfaceWidget * interfaceWidget;
+    QString mocp;
+    QString x_terminal_emulator;
+    QStringList args;
+    bool interruptFlag;
 };
 
 #endif // MOCPWATCHER_HPP
