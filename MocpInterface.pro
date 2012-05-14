@@ -4,24 +4,26 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4):QT += widgets
 
 TARGET = MocpInterface
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        InterfaceWidget.cpp \
+SOURCES += main.cpp \
+    InterfaceWidget.cpp \
     MocpWatcher.cpp
 
-HEADERS  += InterfaceWidget.hpp \
+HEADERS += InterfaceWidget.hpp \
     MocpWatcher.hpp
 
-FORMS    += InterfaceWidget.ui
+FORMS += InterfaceWidget.ui
 
-RESOURCES += \
+RESOURCES +=  \
     pictures.qrc
 
 QMAKE_CXXFLAGS += -std=c++0x
+
+XUP.OTHERS_PLATFORM_TARGET_DEFAULT = MocpInterface
