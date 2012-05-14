@@ -19,20 +19,8 @@ enum SERVER_STATUS{
     OFF, ON
 };
 
-/**
- * Optimal comparison name lenght is length of QString which is perfect for InterfaceWidget
- *
- * @brief OPTIMAL_COMPOSITION_NAME_LENGHT
- */
 constexpr int OPTIMAL_COMPOSITION_NAME_LENGHT = 42;
-
-/**
- * This is offsert from down corner of the screen for InterfaceWidget
- *
- * @brief DOWN_HEIGHT_OFFSET
- */
-
-constexpr int DOWN_HEIGHT_OFFSET = 10;
+constexpr int DOWN_HEIGHT_OFFSET = 27;
 
 class InterfaceWidget : public QWidget {
     Q_OBJECT
@@ -46,7 +34,7 @@ class InterfaceWidget : public QWidget {
     QAction * closeAction;
     QAction * showHideAction;
     QAction * openMocpAction;
-
+    QAction * playMocpAction;
     MocpWatcher * watcher;
 
 public:
@@ -60,8 +48,9 @@ public:
     void    mousePressEvent( QMouseEvent * ) { showHideSlot(); }
 
 public slots:
-    void    disableStartServerAction();
-    void    disableStopServerAction();
+    void    disableStartServerAction() { startServerAction->setDisabled( true ); stopServerAction->setEnabled( true ); openMocpAction->setEnabled( true );  }
+    void    disableStopServerAction() { stopServerAction->setDisabled( true ); startServerAction->setEnabled( true ); openMocpAction->setDisabled( true ); }
+
 private:
     Ui::InterfaceWidget *ui;
 

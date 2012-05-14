@@ -1,10 +1,6 @@
 #include "InterfaceWidget.hpp"
 #include "ui_InterfaceWidget.h"
 
-/**
- * @brief InterfaceWidget::InterfaceWidget
- * @param parent
- */
 InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip ), ui( new Ui::InterfaceWidget ) {
     ui->setupUi(this);
 
@@ -15,7 +11,9 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     closeAction = new QAction( tr("&Close"), contextMenu );
     showHideAction = new QAction( tr("Show/&hide"), contextMenu );
     openMocpAction = new QAction( tr("Open mocp"), contextMenu );
+    playMocpAction = new QAction( tr("&Play/Pause"), contextMenu );
 
+    contextMenu->addAction( playMocpAction );
     contextMenu->addAction( showHideAction );
     contextMenu->addSeparator();
     contextMenu->addAction( openMocpAction );
@@ -24,13 +22,14 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     contextMenu->addSeparator();
     contextMenu->addAction( closeAction );
 
+
     watcher = new MocpWatcher( this );
 
     connect( stopServerAction, SIGNAL( triggered() ), watcher, SLOT( stopServerSlot() ) );
     connect( startServerAction, SIGNAL( triggered() ), watcher, SLOT( startServerSlot() ) );
     connect( showHideAction, SIGNAL( triggered() ), this, SLOT( showHideSlot() ) );
     connect( openMocpAction, SIGNAL( triggered() ), watcher, SLOT( openMocpSlot() ) );
-
+    connect(playMocpAction,SIGNAL(triggered()),watcher,SLOT(mocpPlay()));
     connect( closeAction, SIGNAL( triggered() ), qApp, SLOT( quit() ) );
 
     trayIcon = new QSystemTrayIcon( this );
@@ -49,9 +48,6 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     watcher->start();
 }
 
-/**
- * @brief InterfaceWidget::~InterfaceWidget
- */
 InterfaceWidget::~InterfaceWidget() {
     watcher->interruptReadLoopSlot();
     while ( watcher->isRunning() ) {
@@ -61,27 +57,19 @@ InterfaceWidget::~InterfaceWidget() {
     delete ui;
 }
 
-/**
- * @brief InterfaceWidget::displayServerStatus
- * @param serverStatus
- */
 void InterfaceWidget::displayServerStatus(SERVER_STATUS serverStatus) {
     switch ( serverStatus ) {
     case OFF:
-        ui->serverStateLabel->setText( tr("Off") );
+        this->ui->serverStateLabel->setText("Off");
         break;
     case ON:
-        ui->serverStateLabel->setText( tr("On") );
+        this->ui->serverStateLabel->setText("On");
         break;
     default:
         break;
     }
 }
 
-/**
- * @brief InterfaceWidget::displayComposition
- * @param composition
- */
 void InterfaceWidget::displayComposition(QString composition) {
     if ( composition.size() > OPTIMAL_COMPOSITION_NAME_LENGHT ) {
         QString shortComposition = composition.mid( 0, OPTIMAL_COMPOSITION_NAME_LENGHT - 3 );
@@ -94,35 +82,11 @@ void InterfaceWidget::displayComposition(QString composition) {
     trayIcon->setToolTip( composition );
 }
 
-/**
- * @brief InterfaceWidget::displayTime
- * @param time
- */
 void InterfaceWidget::displayTime(QString time) {
     ui->timeLabel->setText(time);
 }
 
-/**
- * @brief InterfaceWidget::disableStartServerAction
- */
-void InterfaceWidget::disableStartServerAction() {
-    startServerAction->setDisabled( true );
-    stopServerAction->setEnabled( true );
-    openMocpAction->setEnabled( true );
-}
 
-/**
- * @brief InterfaceWidget::disableStopServerAction
- */
-void InterfaceWidget::disableStopServerAction() {
-    stopServerAction->setDisabled( true );
-    startServerAction->setEnabled( true );
-    openMocpAction->setDisabled( true );
-}
-
-/**
- * @brief InterfaceWidget::showHideSlot
- */
 void InterfaceWidget::showHideSlot() {
     if ( isVisible() ) {
         hide();
@@ -132,16 +96,14 @@ void InterfaceWidget::showHideSlot() {
     }
 }
 
-/**
- * @brief InterfaceWidget::trayIconClicked
- * @param reason
- */
-
 void InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) {
     switch ( reason ) {
     case QSystemTrayIcon::Trigger:
     case QSystemTrayIcon::DoubleClick:
         showHideSlot();
+        break;
+    case QSystemTrayIcon::MiddleClick:
+        watcher->mocpPlay();
         break;
     default:
         break;

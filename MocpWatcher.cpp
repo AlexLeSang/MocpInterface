@@ -1,10 +1,7 @@
 #include "MocpWatcher.hpp"
+
 #include "InterfaceWidget.hpp"
 
-/**
- * @brief MocpWatcher::MocpWatcher
- * @param interface
- */
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
     x_terminal_emulator = "xterm -geometry 200x40+0+0 ";
@@ -12,21 +9,16 @@ MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interfa
     interruptFlag = false;
 }
 
-/**
- * @brief MocpWatcher::~MocpWatcher
- */
 MocpWatcher::~MocpWatcher() {
     delete process;
 }
 
-/**
- * @brief MocpWatcher::run
- */
 void MocpWatcher::run() {
     process = new QProcess;
     QString out;
     QString artist;
     QString song;
+    QString fileName;
     QString totalTime;
     QString timeLeft;
     QByteArray outputByteArray;
@@ -38,6 +30,7 @@ void MocpWatcher::run() {
         process->waitForFinished();
         outputByteArray = process->readAll();
         out = QString::fromUtf8(outputByteArray.data(),outputByteArray.size());
+//        out = ( process->readAll() );
 
         if ( out.isEmpty() ) {
             interfaceWidget->displayServerStatus( OFF );
@@ -60,6 +53,10 @@ void MocpWatcher::run() {
         int artistStartPos = out.indexOf( "Artist: " ) + 8;
         int songStartPos = out.indexOf( "SongTitle: " ); // 10
         int songEndPos = out.indexOf( "Album:" ) - 1;
+        int fileNamePos = out.indexOf("File:") + 6;
+
+        fileName = out.mid(fileNamePos, out.indexOf( "Title:" ) - 1 - fileNamePos);
+        fileName = fileName.mid(fileName.lastIndexOf("/")+1,fileName.length() - fileName.lastIndexOf("/") - 4);
         artist = out.mid ( artistStartPos, songStartPos - artistStartPos - 1 ) ;
         song = out.mid( songStartPos + 11, songEndPos - ( songStartPos + 11 ) );
 
@@ -69,23 +66,14 @@ void MocpWatcher::run() {
 
         totalTime = out.mid(totalTimePos + 11, timeLeftPos - 12 - totalTimePos);
         timeLeft = out.mid(timeLeftPos + 10, timeLeftEndPos - 11 - timeLeftPos);
+        if (! (artist.isEmpty() && song.isEmpty()))
         interfaceWidget->displayComposition(artist + ": " + song);
+        else
+        interfaceWidget->displayComposition(fileName);
         interfaceWidget->displayTime(timeLeft + "/" + totalTime);
     }
 }
 
-/**
- * Set interrupt flag and stop watch loop
- *
- * @brief MocpWatcher::interruptReadLoopSlot
- */
-void MocpWatcher::interruptReadLoopSlot() {
-   interruptFlag = true;
-}
-
-/**
- * @brief MocpWatcher::stopServerSlot
- */
 void MocpWatcher::stopServerSlot() {
     QStringList stopList;
     stopList << "-x";
@@ -93,9 +81,6 @@ void MocpWatcher::stopServerSlot() {
     interfaceWidget->disableStopServerAction();
 }
 
-/**
- * @brief MocpWatcher::startServerSlot
- */
 void MocpWatcher::startServerSlot() {
     QStringList stopList;
     stopList << "-S";
@@ -103,9 +88,12 @@ void MocpWatcher::startServerSlot() {
     interfaceWidget->disableStartServerAction();
 }
 
-/**
- * @brief MocpWatcher::openMocpSlot
- */
 void MocpWatcher::openMocpSlot() {
     QProcess::startDetached( x_terminal_emulator + " " + mocp  );
+}
+
+void MocpWatcher::mocpPlay(){
+    QStringList play;
+    play << "--toggle-pause";
+    QProcess::startDetached( mocp, play );
 }

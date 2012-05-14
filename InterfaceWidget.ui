@@ -59,6 +59,13 @@
     </disabled>
    </palette>
   </property>
+  <property name="font">
+   <font>
+    <italic>false</italic>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+   </font>
+  </property>
   <property name="contextMenuPolicy">
    <enum>Qt::ActionsContextMenu</enum>
   </property>
@@ -70,7 +77,7 @@
     <normaloff>:/icons/mocp_icon.png</normaloff>:/icons/mocp_icon.png</iconset>
   </property>
   <property name="windowOpacity">
-   <double>0.850000000000000</double>
+   <double>5.000000000000000</double>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
