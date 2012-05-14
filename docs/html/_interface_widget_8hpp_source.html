@@ -90,66 +90,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00008"></a>00008 <span class="preprocessor">#include &lt;QMessageBox&gt;</span>
 <a name="l00009"></a>00009 <span class="preprocessor">#include &lt;QDialog&gt;</span>
 <a name="l00010"></a>00010 <span class="preprocessor">#include &lt;QDesktopWidget&gt;</span>
-<a name="l00011"></a>00011 
-<a name="l00012"></a>00012 <span class="preprocessor">#include &quot;<a class="code" href="_mocp_watcher_8hpp.html">MocpWatcher.hpp</a>&quot;</span>
-<a name="l00013"></a>00013 <span class="preprocessor">#include &lt;QtGui&gt;</span>
+<a name="l00011"></a>00011 <span class="preprocessor">#include &lt;QtGui/QMouseEvent&gt;</span>
+<a name="l00012"></a>00012 
+<a name="l00013"></a>00013 <span class="preprocessor">#include &quot;<a class="code" href="_mocp_watcher_8hpp.html">MocpWatcher.hpp</a>&quot;</span>
 <a name="l00014"></a>00014 
-<a name="l00015"></a><a class="code" href="namespace_ui.html">00015</a> <span class="keyword">namespace </span>Ui {
-<a name="l00016"></a>00016 <span class="keyword">class </span><a class="code" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a>;
-<a name="l00017"></a>00017 }
-<a name="l00018"></a>00018 
-<a name="l00019"></a><a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">00019</a> <span class="keyword">enum</span> <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">SERVER_STATUS</a>{
-<a name="l00020"></a><a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">00020</a>     <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">OFF</a>, 
-<a name="l00021"></a><a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">00021</a>     <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">ON</a> 
-<a name="l00022"></a>00022 };
-<a name="l00023"></a>00023 
-<a name="l00029"></a><a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4">00029</a> constexpr <span class="keywordtype">int</span> <a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4" title="OPTIMAL_COMPOSITION_NAME_LENGHT.">OPTIMAL_COMPOSITION_NAME_LENGHT</a> = 42;
-<a name="l00030"></a>00030 
-<a name="l00037"></a><a class="code" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08">00037</a> constexpr <span class="keywordtype">int</span> <a class="code" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08" title="DOWN_HEIGHT_OFFSET.">DOWN_HEIGHT_OFFSET</a> = 10;
-<a name="l00038"></a>00038 
-<a name="l00042"></a><a class="code" href="class_interface_widget.html">00042</a> <span class="keyword">class </span><a class="code" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a> : <span class="keyword">public</span> QWidget {
-<a name="l00043"></a>00043     Q_OBJECT
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="keyword">public</span>:
-<a name="l00046"></a>00046 
-<a name="l00047"></a>00047     <span class="keyword">explicit</span> <a class="code" href="class_interface_widget.html#adddb54676e57004c5cc562d90c36d83c" title="InterfaceWidget::InterfaceWidget.">InterfaceWidget</a>(QWidget *parent = 0);
-<a name="l00048"></a>00048     <a class="code" href="class_interface_widget.html#a7ac11d16b11cf435594e38b098176217" title="InterfaceWidget::~InterfaceWidget.">~InterfaceWidget</a>();
-<a name="l00049"></a>00049     
-<a name="l00050"></a>00050     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a70f09b9d06d0f202a995b12a087a910d" title="InterfaceWidget::displayServerStatus.">displayServerStatus</a>( <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">SERVER_STATUS</a> serverStatus );
-<a name="l00051"></a>00051     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#ac9c49591613a6ca657fae9c11d256eb1" title="InterfaceWidget::displayComposition.">displayComposition</a>( QString composition );
-<a name="l00052"></a>00052     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#aa0286660e6d0ceb3ca19c378b44c59e1" title="InterfaceWidget::displayTime.">displayTime</a>( QString time );
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a652bc298aafbacea7f64bce43b3ed0aa" title="InterfaceWidget::mousePressEvent.">mousePressEvent</a>(QMouseEvent * me);
-<a name="l00055"></a>00055 
-<a name="l00056"></a>00056 <span class="keyword">public</span> slots:
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a6fb283827577dfa71183a2a64fff7480" title="InterfaceWidget::disableStartServerAction.">disableStartServerAction</a>();
-<a name="l00059"></a>00059     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a591b5f123431b60db0bd916214c82cb3" title="InterfaceWidget::disableStopServerAction.">disableStopServerAction</a>();
+<a name="l00024"></a>00024 <span class="keyword">namespace </span>Ui {
+<a name="l00025"></a>00025 <span class="keyword">class </span><a class="code" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a>;
+<a name="l00026"></a>00026 }
+<a name="l00027"></a>00027 
+<a name="l00032"></a><a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">00032</a> <span class="keyword">enum</span> <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b" title="The SERVER_STATUS enum.">SERVER_STATUS</a>{
+<a name="l00033"></a><a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">00033</a>     <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">OFF</a>, 
+<a name="l00034"></a><a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">00034</a>     <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">ON</a> 
+<a name="l00035"></a>00035 };
+<a name="l00036"></a>00036 
+<a name="l00042"></a><a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4">00042</a> constexpr <span class="keywordtype">int</span> <a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4" title="OPTIMAL_COMPOSITION_NAME_LENGHT.">OPTIMAL_COMPOSITION_NAME_LENGHT</a> = 42;
+<a name="l00043"></a>00043 
+<a name="l00050"></a><a class="code" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08">00050</a> constexpr <span class="keywordtype">int</span> <a class="code" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08" title="DOWN_HEIGHT_OFFSET.">DOWN_HEIGHT_OFFSET</a> = 10;
+<a name="l00051"></a>00051 
+<a name="l00056"></a><a class="code" href="class_interface_widget.html">00056</a> <span class="keyword">class </span><a class="code" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a> : <span class="keyword">public</span> QWidget {
+<a name="l00057"></a>00057     Q_OBJECT
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="keyword">public</span>:
 <a name="l00060"></a>00060 
-<a name="l00061"></a>00061 <span class="keyword">private</span>:
-<a name="l00062"></a>00062 
-<a name="l00063"></a>00063     QSystemTrayIcon * trayIcon;
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065     QMenu * contextMenu;
-<a name="l00066"></a>00066 
-<a name="l00067"></a>00067     QAction * stopServerAction;
-<a name="l00068"></a>00068     QAction * startServerAction;
-<a name="l00069"></a>00069     QAction * closeAction;
-<a name="l00070"></a>00070     QAction * showHideAction;
-<a name="l00071"></a>00071     QAction * openMocpAction;
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073     <a class="code" href="class_mocp_watcher.html" title="The MocpWatcher class.">MocpWatcher</a> * watcher;
-<a name="l00074"></a>00074 
-<a name="l00075"></a>00075     Ui::InterfaceWidget *ui
+<a name="l00061"></a>00061     <span class="keyword">explicit</span> <a class="code" href="class_interface_widget.html#adddb54676e57004c5cc562d90c36d83c" title="InterfaceWidget::InterfaceWidget.">InterfaceWidget</a>(QWidget *parent = 0);
+<a name="l00062"></a>00062     <a class="code" href="class_interface_widget.html#a7ac11d16b11cf435594e38b098176217" title="InterfaceWidget::~InterfaceWidget.">~InterfaceWidget</a>();
+<a name="l00063"></a>00063     
+<a name="l00064"></a>00064     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a70f09b9d06d0f202a995b12a087a910d" title="InterfaceWidget::displayServerStatus.">displayServerStatus</a>( <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b" title="The SERVER_STATUS enum.">SERVER_STATUS</a> serverStatus );
+<a name="l00065"></a>00065     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#ac9c49591613a6ca657fae9c11d256eb1" title="InterfaceWidget::displayComposition.">displayComposition</a>( QString composition );
+<a name="l00066"></a>00066     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#aa0286660e6d0ceb3ca19c378b44c59e1" title="InterfaceWidget::displayTime.">displayTime</a>( QString time );
+<a name="l00067"></a>00067 
+<a name="l00068"></a>00068     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a93b882d96082ac0283c039823675adf3" title="InterfaceWidget::mouseDoubleClickEvent.">mouseDoubleClickEvent</a>(QMouseEvent *);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a4986e36de3a34644cc7f60336188e426" title="InterfaceWidget::mouseMoveEvent.">mouseMoveEvent</a>(QMouseEvent * me);
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="keyword">public</span> slots:
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a6fb283827577dfa71183a2a64fff7480" title="InterfaceWidget::disableStartServerAction.">disableStartServerAction</a>();
+<a name="l00075"></a>00075     <span class="keywordtype">void</span>    <a class="code" href="class_interface_widget.html#a591b5f123431b60db0bd916214c82cb3" title="InterfaceWidget::disableStopServerAction.">disableStopServerAction</a>();
 <a name="l00076"></a>00076 
-<a name="l00077"></a>00077 <span class="keyword">private</span> slots:
+<a name="l00077"></a>00077 <span class="keyword">private</span>:
 <a name="l00078"></a>00078 
-<a name="l00079"></a>00079     <span class="keywordtype">void</span>    showHideSlot();
-<a name="l00080"></a>00080     <span class="keywordtype">void</span>    trayIconClicked( QSystemTrayIcon::ActivationReason reason );
-<a name="l00081"></a>00081 
-<a name="l00082"></a>00082 };
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="preprocessor">#endif // INTERFACEWIDGET_HPP</span>
+<a name="l00079"></a>00079     QSystemTrayIcon * trayIcon;
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081     QMenu * contextMenu;
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083     QAction * stopServerAction;
+<a name="l00084"></a>00084     QAction * startServerAction;
+<a name="l00085"></a>00085     QAction * closeAction;
+<a name="l00086"></a>00086     QAction * showHideAction;
+<a name="l00087"></a>00087     QAction * openMocpAction;
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089     <a class="code" href="class_mocp_watcher.html" title="The MocpWatcher class work with mocp server.">MocpWatcher</a> * watcher;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091     Ui::InterfaceWidget *ui;
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093 <span class="keyword">private</span> slots:
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095     <span class="keywordtype">void</span>    showHideSlot();
+<a name="l00096"></a>00096     <span class="keywordtype">void</span>    trayIconClicked( QSystemTrayIcon::ActivationReason reason );
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 };
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="preprocessor">#endif // INTERFACEWIDGET_HPP</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -168,7 +170,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 14 2012 12:54:40 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 14 2012 14:24:51 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

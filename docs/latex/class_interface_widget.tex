@@ -3,7 +3,7 @@
 }
 
 
-\-The \hyperlink{class_interface_widget}{\-Interface\-Widget} class.  
+\-The \hyperlink{class_interface_widget}{\-Interface\-Widget} class implement interface for mocp player.  
 
 
 
@@ -30,14 +30,16 @@ void \hyperlink{class_interface_widget_ac9c49591613a6ca657fae9c11d256eb1}{displa
 \begin{DoxyCompactList}\small\item\em \hyperlink{class_interface_widget_ac9c49591613a6ca657fae9c11d256eb1}{\-Interface\-Widget\-::display\-Composition}. \end{DoxyCompactList}\item 
 void \hyperlink{class_interface_widget_aa0286660e6d0ceb3ca19c378b44c59e1}{display\-Time} (\-Q\-String time)
 \begin{DoxyCompactList}\small\item\em \hyperlink{class_interface_widget_aa0286660e6d0ceb3ca19c378b44c59e1}{\-Interface\-Widget\-::display\-Time}. \end{DoxyCompactList}\item 
-void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\-Press\-Event} (\-Q\-Mouse\-Event $\ast$me)
-\begin{DoxyCompactList}\small\item\em \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{\-Interface\-Widget\-::mouse\-Press\-Event}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{class_interface_widget_a93b882d96082ac0283c039823675adf3}{mouse\-Double\-Click\-Event} (\-Q\-Mouse\-Event $\ast$)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_interface_widget_a93b882d96082ac0283c039823675adf3}{\-Interface\-Widget\-::mouse\-Double\-Click\-Event}. \end{DoxyCompactList}\item 
+void \hyperlink{class_interface_widget_a4986e36de3a34644cc7f60336188e426}{mouse\-Move\-Event} (\-Q\-Mouse\-Event $\ast$me)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_interface_widget_a4986e36de3a34644cc7f60336188e426}{\-Interface\-Widget\-::mouse\-Move\-Event}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{\-Detailed \-Description}
-\-The \hyperlink{class_interface_widget}{\-Interface\-Widget} class. 
+\-The \hyperlink{class_interface_widget}{\-Interface\-Widget} class implement interface for mocp player. 
 
-\-Definition at line 42 of file \-Interface\-Widget.\-hpp.
+\-Definition at line 56 of file \-Interface\-Widget.\-hpp.
 
 
 
@@ -55,12 +57,12 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em parent} & \-Q\-Widget $\ast$ \\
+{\em parent} & \-Pointer on parent \-Q\-Widget. \\
 \hline
 \end{DoxyParams}
 
 
-\-Definition at line 8 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 14 of file \-Interface\-Widget.\-cpp.
 
 \hypertarget{class_interface_widget_a7ac11d16b11cf435594e38b098176217}{\index{\-Interface\-Widget@{\-Interface\-Widget}!$\sim$\-Interface\-Widget@{$\sim$\-Interface\-Widget}}
 \index{$\sim$\-Interface\-Widget@{$\sim$\-Interface\-Widget}!InterfaceWidget@{\-Interface\-Widget}}
@@ -75,7 +77,7 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 
-\-Definition at line 55 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 61 of file \-Interface\-Widget.\-cpp.
 
 
 
@@ -93,7 +95,7 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 
-\-Definition at line 116 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 145 of file \-Interface\-Widget.\-cpp.
 
 \hypertarget{class_interface_widget_a591b5f123431b60db0bd916214c82cb3}{\index{\-Interface\-Widget@{\-Interface\-Widget}!disable\-Stop\-Server\-Action@{disable\-Stop\-Server\-Action}}
 \index{disable\-Stop\-Server\-Action@{disable\-Stop\-Server\-Action}!InterfaceWidget@{\-Interface\-Widget}}
@@ -108,7 +110,7 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 
-\-Definition at line 125 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 154 of file \-Interface\-Widget.\-cpp.
 
 \hypertarget{class_interface_widget_ac9c49591613a6ca657fae9c11d256eb1}{\index{\-Interface\-Widget@{\-Interface\-Widget}!display\-Composition@{display\-Composition}}
 \index{display\-Composition@{display\-Composition}!InterfaceWidget@{\-Interface\-Widget}}
@@ -123,12 +125,12 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em composition} & \-Q\-String \\
+{\em composition} & \-Q\-String which contains atist and composition name. \\
 \hline
 \end{DoxyParams}
 
 
-\-Definition at line 85 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 91 of file \-Interface\-Widget.\-cpp.
 
 \hypertarget{class_interface_widget_a70f09b9d06d0f202a995b12a087a910d}{\index{\-Interface\-Widget@{\-Interface\-Widget}!display\-Server\-Status@{display\-Server\-Status}}
 \index{display\-Server\-Status@{display\-Server\-Status}!InterfaceWidget@{\-Interface\-Widget}}
@@ -143,12 +145,12 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em server\-Status} & enum \-S\-E\-R\-V\-E\-R\-\_\-\-S\-T\-A\-T\-U\-S \\
+{\em server\-Status} & \-Instance of enum \-S\-E\-R\-V\-E\-R\-\_\-\-S\-T\-A\-T\-U\-S. \\
 \hline
 \end{DoxyParams}
 
 
-\-Definition at line 68 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 74 of file \-Interface\-Widget.\-cpp.
 
 \hypertarget{class_interface_widget_aa0286660e6d0ceb3ca19c378b44c59e1}{\index{\-Interface\-Widget@{\-Interface\-Widget}!display\-Time@{display\-Time}}
 \index{display\-Time@{display\-Time}!InterfaceWidget@{\-Interface\-Widget}}
@@ -163,32 +165,47 @@ void \hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{mouse\
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em time} & \-Q\-String \\
+{\em time} & \-Q\-String which containe composition time. \\
 \hline
 \end{DoxyParams}
 
 
-\-Definition at line 101 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 107 of file \-Interface\-Widget.\-cpp.
 
-\hypertarget{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{\index{\-Interface\-Widget@{\-Interface\-Widget}!mouse\-Press\-Event@{mouse\-Press\-Event}}
-\index{mouse\-Press\-Event@{mouse\-Press\-Event}!InterfaceWidget@{\-Interface\-Widget}}
-\subsubsection[{mouse\-Press\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Interface\-Widget\-::mouse\-Press\-Event} (
+\hypertarget{class_interface_widget_a93b882d96082ac0283c039823675adf3}{\index{\-Interface\-Widget@{\-Interface\-Widget}!mouse\-Double\-Click\-Event@{mouse\-Double\-Click\-Event}}
+\index{mouse\-Double\-Click\-Event@{mouse\-Double\-Click\-Event}!InterfaceWidget@{\-Interface\-Widget}}
+\subsubsection[{mouse\-Double\-Click\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Interface\-Widget\-::mouse\-Double\-Click\-Event} (
+\begin{DoxyParamCaption}
+\item[{\-Q\-Mouse\-Event $\ast$}]{}
+\end{DoxyParamCaption}
+)}}\label{class_interface_widget_a93b882d96082ac0283c039823675adf3}
+
+
+\hyperlink{class_interface_widget_a93b882d96082ac0283c039823675adf3}{\-Interface\-Widget\-::mouse\-Double\-Click\-Event}. 
+
+
+
+\-Definition at line 114 of file \-Interface\-Widget.\-cpp.
+
+\hypertarget{class_interface_widget_a4986e36de3a34644cc7f60336188e426}{\index{\-Interface\-Widget@{\-Interface\-Widget}!mouse\-Move\-Event@{mouse\-Move\-Event}}
+\index{mouse\-Move\-Event@{mouse\-Move\-Event}!InterfaceWidget@{\-Interface\-Widget}}
+\subsubsection[{mouse\-Move\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf \-Interface\-Widget\-::mouse\-Move\-Event} (
 \begin{DoxyParamCaption}
 \item[{\-Q\-Mouse\-Event $\ast$}]{me}
 \end{DoxyParamCaption}
-)}}\label{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}
+)}}\label{class_interface_widget_a4986e36de3a34644cc7f60336188e426}
 
 
-\hyperlink{class_interface_widget_a652bc298aafbacea7f64bce43b3ed0aa}{\-Interface\-Widget\-::mouse\-Press\-Event}. 
+\hyperlink{class_interface_widget_a4986e36de3a34644cc7f60336188e426}{\-Interface\-Widget\-::mouse\-Move\-Event}. 
 
 
 \begin{DoxyParams}{\-Parameters}
-{\em me} & \-Q\-Mouse\-Event $\ast$ \\
+{\em me} & \-Pointer on \-Q\-Mouse\-Event. \\
 \hline
 \end{DoxyParams}
 
 
-\-Definition at line 109 of file \-Interface\-Widget.\-cpp.
+\-Definition at line 122 of file \-Interface\-Widget.\-cpp.
 
 
 

@@ -2,6 +2,8 @@
 #include "InterfaceWidget.hpp"
 
 /*!
+ * \file main.cpp
+ *
  * \author Olexandr Halushko alexlesang@gmail.com
  * \section LICENSE
  *
@@ -16,10 +18,11 @@
  * General Public License for more details at
  * http://www.gnu.org/copyleft/gpl.html
  *
- * \brief main
+ * \brief Main fucnction
+ * \fn main
  * \param argc int
  * \param argv char *[]
- * \return
+ * \return Application return code.
  */
 
 int main(int argc, char *argv[]) {

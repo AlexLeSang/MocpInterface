@@ -83,22 +83,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &lt;QApplication&gt;</span>
 <a name="l00002"></a>00002 <span class="preprocessor">#include &quot;<a class="code" href="_interface_widget_8hpp.html">InterfaceWidget.hpp</a>&quot;</span>
 <a name="l00003"></a>00003 
-<a name="l00025"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00025</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="main">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027     QApplication a(argc, argv);
-<a name="l00028"></a>00028     Q_INIT_RESOURCE(pictures);
+<a name="l00028"></a><a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">00028</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {
 <a name="l00029"></a>00029 
-<a name="l00030"></a>00030     <span class="keywordflow">if</span> ( !QSystemTrayIcon::isSystemTrayAvailable() ) {
-<a name="l00031"></a>00031         QMessageBox::critical(0, QObject::tr(<span class="stringliteral">&quot;Systray&quot;</span>), QObject::tr(<span class="stringliteral">&quot;I couldn&#39;t detect any system tray on this system.&quot;</span>));
-<a name="l00032"></a>00032         <span class="keywordflow">return</span> 1;
-<a name="l00033"></a>00033     }
-<a name="l00034"></a>00034     QApplication::setQuitOnLastWindowClosed(<span class="keyword">false</span>);
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036     <a class="code" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a> w;
-<a name="l00037"></a>00037     w.show();
-<a name="l00038"></a>00038     
-<a name="l00039"></a>00039     <span class="keywordflow">return</span> a.exec();
-<a name="l00040"></a>00040 }
+<a name="l00030"></a>00030     QApplication a(argc, argv);
+<a name="l00031"></a>00031     Q_INIT_RESOURCE(pictures);
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033     <span class="keywordflow">if</span> ( !QSystemTrayIcon::isSystemTrayAvailable() ) {
+<a name="l00034"></a>00034         QMessageBox::critical(0, QObject::tr(<span class="stringliteral">&quot;Systray&quot;</span>), QObject::tr(<span class="stringliteral">&quot;I couldn&#39;t detect any system tray on this system.&quot;</span>));
+<a name="l00035"></a>00035         <span class="keywordflow">return</span> 1;
+<a name="l00036"></a>00036     }
+<a name="l00037"></a>00037     QApplication::setQuitOnLastWindowClosed(<span class="keyword">false</span>);
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     <a class="code" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a> w;
+<a name="l00040"></a>00040     w.show();
+<a name="l00041"></a>00041     
+<a name="l00042"></a>00042     <span class="keywordflow">return</span> a.exec();
+<a name="l00043"></a>00043 }
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -117,7 +117,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 14 2012 12:54:40 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 14 2012 14:24:51 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

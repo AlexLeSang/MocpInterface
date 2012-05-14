@@ -2,8 +2,13 @@
 #include "InterfaceWidget.hpp"
 
 /*!
+ * \file MocpWatcher.cpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
+
+/*!
  * \brief MocpWatcher::MocpWatcher
- * \param interface InterfaceWidget *
+ * \param interface Pointer on interface widget.
  */
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
@@ -65,7 +70,7 @@ void MocpWatcher::run() {
 
         int totalTimePos = out.indexOf("TotalTime: "); // 11
         int timeLeftPos = out.indexOf("TimeLeft: "); // 10
-        int timeLeftEndPos = out.indexOf("TotalSec");
+        int timeLeftEndPos = out.indexOf("TotalSec: ");
 
         totalTime = out.mid(totalTimePos + 11, timeLeftPos - 12 - totalTimePos);
         timeLeft = out.mid(timeLeftPos + 10, timeLeftEndPos - 11 - timeLeftPos);

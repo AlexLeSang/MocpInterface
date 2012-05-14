@@ -92,23 +92,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &lt;QMessageBox&gt;</code><br/>
 <code>#include &lt;QDialog&gt;</code><br/>
 <code>#include &lt;QDesktopWidget&gt;</code><br/>
+<code>#include &lt;QtGui/QMouseEvent&gt;</code><br/>
 <code>#include &quot;<a class="el" href="_mocp_watcher_8hpp_source.html">MocpWatcher.hpp</a>&quot;</code><br/>
-<code>#include &lt;QtGui&gt;</code><br/>
 </div>
 <p><a href="_interface_widget_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_interface_widget.html">InterfaceWidget</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a> class.  <a href="class_interface_widget.html#details">More...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a> class implement interface for mocp player.  <a href="class_interface_widget.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_ui.html">Ui</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Standart namespace from QtDesigner. </p>
+<br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">SERVER_STATUS</a> { <a class="el" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">OFF</a>, 
 <a class="el" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">ON</a>
  }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The SERVER_STATUS enum.  <a href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4">OPTIMAL_COMPOSITION_NAME_LENGHT</a> = 42</td></tr>
@@ -116,7 +119,11 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08">DOWN_HEIGHT_OFFSET</a> = 10</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">DOWN_HEIGHT_OFFSET.  <a href="#a801c1edb60c6fc6cc3e885dbeea94a08"></a><br/></td></tr>
 </table>
-<hr/><h2>Enumeration Type Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><dl class="author"><dt><b>Author:</b></dt><dd>Olexandr Halushko <a href="mailto:alexlesang@gmail.com">alexlesang@gmail.com</a> </dd></dl>
+
+<p>Definition in file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
+</div><hr/><h2>Enumeration Type Documentation</h2>
 <a class="anchor" id="acf938af120b82076e10141155fe5ef9b"></a><!-- doxytag: member="InterfaceWidget.hpp::SERVER_STATUS" ref="acf938af120b82076e10141155fe5ef9b" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -127,6 +134,8 @@ Variables</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>The SERVER_STATUS enum. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75"></a><!-- doxytag: member="OFF" ref="acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75" args="" -->OFF</em>&nbsp;</td><td>
 <p>Enum value Server Off. </p>
@@ -138,7 +147,7 @@ Variables</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_interface_widget_8hpp_source.html#l00019">19</a> of file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_interface_widget_8hpp_source.html#l00032">32</a> of file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -155,9 +164,9 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>DOWN_HEIGHT_OFFSET. </p>
-<p>This is offsert from down corner of the screen for <a class="el" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a> </p>
+<p>This is offsert from down corner of the screen for <a class="el" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a> </p>
 
-<p>Definition at line <a class="el" href="_interface_widget_8hpp_source.html#l00037">37</a> of file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_interface_widget_8hpp_source.html#l00050">50</a> of file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -173,9 +182,9 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>OPTIMAL_COMPOSITION_NAME_LENGHT. </p>
-<p>Optimal comparison name lenght is length of QString which is perfect for <a class="el" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a> </p>
+<p>Optimal comparison name lenght is length of QString which is perfect for <a class="el" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a> </p>
 
-<p>Definition at line <a class="el" href="_interface_widget_8hpp_source.html#l00029">29</a> of file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_interface_widget_8hpp_source.html#l00042">42</a> of file <a class="el" href="_interface_widget_8hpp_source.html">InterfaceWidget.hpp</a>.</p>
 
 </div>
 </div>
@@ -197,7 +206,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 14 2012 12:54:40 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 14 2012 14:24:51 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

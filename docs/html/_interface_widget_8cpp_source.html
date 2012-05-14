@@ -83,123 +83,143 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="_interface_widget_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;<a class="code" href="_interface_widget_8hpp.html">InterfaceWidget.hpp</a>&quot;</span>
 <a name="l00002"></a>00002 <span class="preprocessor">#include &quot;ui_InterfaceWidget.h&quot;</span>
 <a name="l00003"></a>00003 
-<a name="l00008"></a><a class="code" href="class_interface_widget.html#adddb54676e57004c5cc562d90c36d83c">00008</a> <a class="code" href="class_interface_widget.html#adddb54676e57004c5cc562d90c36d83c" title="InterfaceWidget::InterfaceWidget.">InterfaceWidget::InterfaceWidget</a>(QWidget *parent) : QWidget( parent, Qt::ToolTip ), ui( new Ui::<a class="code" href="class_interface_widget.html" title="The InterfaceWidget class.">InterfaceWidget</a> ) {
-<a name="l00009"></a>00009     ui-&gt;setupUi(<span class="keyword">this</span>);
-<a name="l00010"></a>00010 
-<a name="l00011"></a>00011     contextMenu = <span class="keyword">new</span> QMenu( <span class="keyword">this</span> );
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013     stopServerAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;&amp;Stop server&quot;</span>), contextMenu );
-<a name="l00014"></a>00014     startServerAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;S&amp;tart server&quot;</span>), contextMenu );
-<a name="l00015"></a>00015     closeAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;&amp;Close&quot;</span>), contextMenu );
-<a name="l00016"></a>00016     showHideAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;Show/&amp;hide&quot;</span>), contextMenu );
-<a name="l00017"></a>00017     openMocpAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;Open mocp&quot;</span>), contextMenu );
+<a name="l00014"></a><a class="code" href="class_interface_widget.html#adddb54676e57004c5cc562d90c36d83c">00014</a> <a class="code" href="class_interface_widget.html#adddb54676e57004c5cc562d90c36d83c" title="InterfaceWidget::InterfaceWidget.">InterfaceWidget::InterfaceWidget</a>(QWidget *parent) : QWidget( parent, Qt::ToolTip ), ui( new Ui::<a class="code" href="class_interface_widget.html" title="The InterfaceWidget class implement interface for mocp player.">InterfaceWidget</a> ) {
+<a name="l00015"></a>00015     ui-&gt;setupUi(<span class="keyword">this</span>);
+<a name="l00016"></a>00016 
+<a name="l00017"></a>00017     contextMenu = <span class="keyword">new</span> QMenu( <span class="keyword">this</span> );
 <a name="l00018"></a>00018 
-<a name="l00019"></a>00019     contextMenu-&gt;addAction( showHideAction );
-<a name="l00020"></a>00020     contextMenu-&gt;addSeparator();
-<a name="l00021"></a>00021     contextMenu-&gt;addAction( openMocpAction );
-<a name="l00022"></a>00022     contextMenu-&gt;addAction( startServerAction );
-<a name="l00023"></a>00023     contextMenu-&gt;addAction( stopServerAction );
-<a name="l00024"></a>00024     contextMenu-&gt;addSeparator();
-<a name="l00025"></a>00025     contextMenu-&gt;addAction( closeAction );
-<a name="l00026"></a>00026 
-<a name="l00027"></a>00027     watcher = <span class="keyword">new</span> <a class="code" href="class_mocp_watcher.html" title="The MocpWatcher class.">MocpWatcher</a>( <span class="keyword">this</span> );
-<a name="l00028"></a>00028 
-<a name="l00029"></a>00029     connect( stopServerAction, SIGNAL( triggered() ), watcher, SLOT( stopServerSlot() ) );
-<a name="l00030"></a>00030     connect( startServerAction, SIGNAL( triggered() ), watcher, SLOT( startServerSlot() ) );
-<a name="l00031"></a>00031     connect( showHideAction, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( showHideSlot() ) );
-<a name="l00032"></a>00032     connect( openMocpAction, SIGNAL( triggered() ), watcher, SLOT( openMocpSlot() ) );
-<a name="l00033"></a>00033 
-<a name="l00034"></a>00034     connect( closeAction, SIGNAL( triggered() ), qApp, SLOT( quit() ) );
-<a name="l00035"></a>00035 
-<a name="l00036"></a>00036     trayIcon = <span class="keyword">new</span> QSystemTrayIcon( <span class="keyword">this</span> );
-<a name="l00037"></a>00037     trayIcon-&gt;setContextMenu( contextMenu );
-<a name="l00038"></a>00038     trayIcon-&gt;setIcon( QIcon( <span class="stringliteral">&quot;:/icons/mocp_icon.png&quot;</span> ) );
-<a name="l00039"></a>00039     trayIcon-&gt;show();
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041     connect( trayIcon, SIGNAL( activated(QSystemTrayIcon::ActivationReason) ), <span class="keyword">this</span>, SLOT( trayIconClicked(QSystemTrayIcon::ActivationReason) ) );
-<a name="l00042"></a>00042 
-<a name="l00043"></a>00043     <span class="keyword">auto</span> * desktop = QApplication::desktop();
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045     QPoint posPoint( desktop-&gt;size().width() - width(), desktop-&gt;size().height() - height() - <a class="code" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08" title="DOWN_HEIGHT_OFFSET.">DOWN_HEIGHT_OFFSET</a> );
+<a name="l00019"></a>00019     stopServerAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;&amp;Stop server&quot;</span>), contextMenu );
+<a name="l00020"></a>00020     startServerAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;S&amp;tart server&quot;</span>), contextMenu );
+<a name="l00021"></a>00021     closeAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;&amp;Close&quot;</span>), contextMenu );
+<a name="l00022"></a>00022     showHideAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;Show/&amp;hide&quot;</span>), contextMenu );
+<a name="l00023"></a>00023     openMocpAction = <span class="keyword">new</span> QAction( tr(<span class="stringliteral">&quot;Open mocp&quot;</span>), contextMenu );
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025     contextMenu-&gt;addAction( showHideAction );
+<a name="l00026"></a>00026     contextMenu-&gt;addSeparator();
+<a name="l00027"></a>00027     contextMenu-&gt;addAction( openMocpAction );
+<a name="l00028"></a>00028     contextMenu-&gt;addAction( startServerAction );
+<a name="l00029"></a>00029     contextMenu-&gt;addAction( stopServerAction );
+<a name="l00030"></a>00030     contextMenu-&gt;addSeparator();
+<a name="l00031"></a>00031     contextMenu-&gt;addAction( closeAction );
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033     watcher = <span class="keyword">new</span> <a class="code" href="class_mocp_watcher.html" title="The MocpWatcher class work with mocp server.">MocpWatcher</a>( <span class="keyword">this</span> );
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     connect( stopServerAction, SIGNAL( triggered() ), watcher, SLOT( stopServerSlot() ) );
+<a name="l00036"></a>00036     connect( startServerAction, SIGNAL( triggered() ), watcher, SLOT( startServerSlot() ) );
+<a name="l00037"></a>00037     connect( showHideAction, SIGNAL( triggered() ), <span class="keyword">this</span>, SLOT( showHideSlot() ) );
+<a name="l00038"></a>00038     connect( openMocpAction, SIGNAL( triggered() ), watcher, SLOT( openMocpSlot() ) );
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040     connect( closeAction, SIGNAL( triggered() ), qApp, SLOT( quit() ) );
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042     trayIcon = <span class="keyword">new</span> QSystemTrayIcon( <span class="keyword">this</span> );
+<a name="l00043"></a>00043     trayIcon-&gt;setContextMenu( contextMenu );
+<a name="l00044"></a>00044     trayIcon-&gt;setIcon( QIcon( <span class="stringliteral">&quot;:/icons/mocp_icon.png&quot;</span> ) );
+<a name="l00045"></a>00045     trayIcon-&gt;show();
 <a name="l00046"></a>00046 
-<a name="l00047"></a>00047     move( posPoint );
+<a name="l00047"></a>00047     connect( trayIcon, SIGNAL( activated(QSystemTrayIcon::ActivationReason) ), <span class="keyword">this</span>, SLOT( trayIconClicked(QSystemTrayIcon::ActivationReason) ) );
 <a name="l00048"></a>00048 
-<a name="l00049"></a>00049     watcher-&gt;start();
-<a name="l00050"></a>00050 }
-<a name="l00051"></a>00051 
-<a name="l00055"></a><a class="code" href="class_interface_widget.html#a7ac11d16b11cf435594e38b098176217">00055</a> <a class="code" href="class_interface_widget.html#a7ac11d16b11cf435594e38b098176217" title="InterfaceWidget::~InterfaceWidget.">InterfaceWidget::~InterfaceWidget</a>() {
-<a name="l00056"></a>00056     watcher-&gt;<a class="code" href="class_mocp_watcher.html#a9e2dde0e726fdb6a8da673434c05b274" title="MocpWatcher::interruptReadLoopSlot.">interruptReadLoopSlot</a>();
-<a name="l00057"></a>00057     <span class="keywordflow">while</span> ( watcher-&gt;isRunning() ) {
-<a name="l00058"></a>00058         watcher-&gt;wait();
-<a name="l00059"></a>00059     }
-<a name="l00060"></a>00060     <span class="keyword">delete</span> watcher;
-<a name="l00061"></a>00061     <span class="keyword">delete</span> ui;
-<a name="l00062"></a>00062 }
-<a name="l00063"></a>00063 
-<a name="l00068"></a><a class="code" href="class_interface_widget.html#a70f09b9d06d0f202a995b12a087a910d">00068</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a70f09b9d06d0f202a995b12a087a910d" title="InterfaceWidget::displayServerStatus.">InterfaceWidget::displayServerStatus</a>(<a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b">SERVER_STATUS</a> serverStatus) {
-<a name="l00069"></a>00069     <span class="keywordflow">switch</span> ( serverStatus ) {
-<a name="l00070"></a>00070     <span class="keywordflow">case</span> <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">OFF</a>:
-<a name="l00071"></a>00071         ui-&gt;serverStateLabel-&gt;setText( tr(<span class="stringliteral">&quot;Off&quot;</span>) );
-<a name="l00072"></a>00072         <span class="keywordflow">break</span>;
-<a name="l00073"></a>00073     <span class="keywordflow">case</span> <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">ON</a>:
-<a name="l00074"></a>00074         ui-&gt;serverStateLabel-&gt;setText( tr(<span class="stringliteral">&quot;On&quot;</span>) );
-<a name="l00075"></a>00075         <span class="keywordflow">break</span>;
-<a name="l00076"></a>00076     <span class="keywordflow">default</span>:
-<a name="l00077"></a>00077         <span class="keywordflow">break</span>;
-<a name="l00078"></a>00078     }
-<a name="l00079"></a>00079 }
-<a name="l00080"></a>00080 
-<a name="l00085"></a><a class="code" href="class_interface_widget.html#ac9c49591613a6ca657fae9c11d256eb1">00085</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#ac9c49591613a6ca657fae9c11d256eb1" title="InterfaceWidget::displayComposition.">InterfaceWidget::displayComposition</a>(QString composition) {
-<a name="l00086"></a>00086     <span class="keywordflow">if</span> ( composition.size() &gt; <a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4" title="OPTIMAL_COMPOSITION_NAME_LENGHT.">OPTIMAL_COMPOSITION_NAME_LENGHT</a> ) {
-<a name="l00087"></a>00087         QString shortComposition = composition.mid( 0, <a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4" title="OPTIMAL_COMPOSITION_NAME_LENGHT.">OPTIMAL_COMPOSITION_NAME_LENGHT</a> - 3 );
-<a name="l00088"></a>00088         shortComposition.append(<span class="stringliteral">&quot;...&quot;</span>);
-<a name="l00089"></a>00089         ui-&gt;artistLabel-&gt;setText( shortComposition );
-<a name="l00090"></a>00090     }
-<a name="l00091"></a>00091     <span class="keywordflow">else</span> {
-<a name="l00092"></a>00092         ui-&gt;artistLabel-&gt;setText( composition );
-<a name="l00093"></a>00093     }
-<a name="l00094"></a>00094     trayIcon-&gt;setToolTip( composition );
-<a name="l00095"></a>00095 }
-<a name="l00096"></a>00096 
-<a name="l00101"></a><a class="code" href="class_interface_widget.html#aa0286660e6d0ceb3ca19c378b44c59e1">00101</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#aa0286660e6d0ceb3ca19c378b44c59e1" title="InterfaceWidget::displayTime.">InterfaceWidget::displayTime</a>(QString time) {
-<a name="l00102"></a>00102     ui-&gt;timeLabel-&gt;setText(time);
-<a name="l00103"></a>00103 }
-<a name="l00104"></a>00104 
-<a name="l00109"></a><a class="code" href="class_interface_widget.html#a652bc298aafbacea7f64bce43b3ed0aa">00109</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a652bc298aafbacea7f64bce43b3ed0aa" title="InterfaceWidget::mousePressEvent.">InterfaceWidget::mousePressEvent</a>(QMouseEvent * me ) {
-<a name="l00110"></a>00110     showHideSlot();
-<a name="l00111"></a>00111 }
-<a name="l00112"></a>00112 
-<a name="l00116"></a><a class="code" href="class_interface_widget.html#a6fb283827577dfa71183a2a64fff7480">00116</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a6fb283827577dfa71183a2a64fff7480" title="InterfaceWidget::disableStartServerAction.">InterfaceWidget::disableStartServerAction</a>() {
-<a name="l00117"></a>00117     startServerAction-&gt;setDisabled( <span class="keyword">true</span> );
-<a name="l00118"></a>00118     stopServerAction-&gt;setEnabled( <span class="keyword">true</span> );
-<a name="l00119"></a>00119     openMocpAction-&gt;setEnabled( <span class="keyword">true</span> );
-<a name="l00120"></a>00120 }
-<a name="l00121"></a>00121 
-<a name="l00125"></a><a class="code" href="class_interface_widget.html#a591b5f123431b60db0bd916214c82cb3">00125</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a591b5f123431b60db0bd916214c82cb3" title="InterfaceWidget::disableStopServerAction.">InterfaceWidget::disableStopServerAction</a>() {
-<a name="l00126"></a>00126     stopServerAction-&gt;setDisabled( <span class="keyword">true</span> );
-<a name="l00127"></a>00127     startServerAction-&gt;setEnabled( <span class="keyword">true</span> );
-<a name="l00128"></a>00128     openMocpAction-&gt;setDisabled( <span class="keyword">true</span> );
-<a name="l00129"></a>00129 }
-<a name="l00130"></a>00130 
-<a name="l00134"></a>00134 <span class="keywordtype">void</span> InterfaceWidget::showHideSlot() {
-<a name="l00135"></a>00135     <span class="keywordflow">if</span> ( isVisible() ) {
-<a name="l00136"></a>00136         hide();
+<a name="l00049"></a>00049     <span class="keyword">auto</span> * desktop = QApplication::desktop();
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051     QPoint posPoint( desktop-&gt;size().width() - width(), desktop-&gt;size().height() - height() - <a class="code" href="_interface_widget_8hpp.html#a801c1edb60c6fc6cc3e885dbeea94a08" title="DOWN_HEIGHT_OFFSET.">DOWN_HEIGHT_OFFSET</a> );
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053     move( posPoint );
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055     watcher-&gt;start();
+<a name="l00056"></a>00056 }
+<a name="l00057"></a>00057 
+<a name="l00061"></a><a class="code" href="class_interface_widget.html#a7ac11d16b11cf435594e38b098176217">00061</a> <a class="code" href="class_interface_widget.html#a7ac11d16b11cf435594e38b098176217" title="InterfaceWidget::~InterfaceWidget.">InterfaceWidget::~InterfaceWidget</a>() {
+<a name="l00062"></a>00062     watcher-&gt;<a class="code" href="class_mocp_watcher.html#a9e2dde0e726fdb6a8da673434c05b274" title="MocpWatcher::interruptReadLoopSlot.">interruptReadLoopSlot</a>();
+<a name="l00063"></a>00063     <span class="keywordflow">while</span> ( watcher-&gt;isRunning() ) {
+<a name="l00064"></a>00064         watcher-&gt;wait();
+<a name="l00065"></a>00065     }
+<a name="l00066"></a>00066     <span class="keyword">delete</span> watcher;
+<a name="l00067"></a>00067     <span class="keyword">delete</span> ui;
+<a name="l00068"></a>00068 }
+<a name="l00069"></a>00069 
+<a name="l00074"></a><a class="code" href="class_interface_widget.html#a70f09b9d06d0f202a995b12a087a910d">00074</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a70f09b9d06d0f202a995b12a087a910d" title="InterfaceWidget::displayServerStatus.">InterfaceWidget::displayServerStatus</a>(<a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9b" title="The SERVER_STATUS enum.">SERVER_STATUS</a> serverStatus) {
+<a name="l00075"></a>00075     <span class="keywordflow">switch</span> ( serverStatus ) {
+<a name="l00076"></a>00076     <span class="keywordflow">case</span> <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9baac132f2982b98bcaa3445e535a03ff75">OFF</a>:
+<a name="l00077"></a>00077         ui-&gt;serverStateLabel-&gt;setText( tr(<span class="stringliteral">&quot;Off&quot;</span>) );
+<a name="l00078"></a>00078         <span class="keywordflow">break</span>;
+<a name="l00079"></a>00079     <span class="keywordflow">case</span> <a class="code" href="_interface_widget_8hpp.html#acf938af120b82076e10141155fe5ef9ba977d478dacaae531f95695750d1e9d03">ON</a>:
+<a name="l00080"></a>00080         ui-&gt;serverStateLabel-&gt;setText( tr(<span class="stringliteral">&quot;On&quot;</span>) );
+<a name="l00081"></a>00081         <span class="keywordflow">break</span>;
+<a name="l00082"></a>00082     <span class="keywordflow">default</span>:
+<a name="l00083"></a>00083         <span class="keywordflow">break</span>;
+<a name="l00084"></a>00084     }
+<a name="l00085"></a>00085 }
+<a name="l00086"></a>00086 
+<a name="l00091"></a><a class="code" href="class_interface_widget.html#ac9c49591613a6ca657fae9c11d256eb1">00091</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#ac9c49591613a6ca657fae9c11d256eb1" title="InterfaceWidget::displayComposition.">InterfaceWidget::displayComposition</a>(QString composition) {
+<a name="l00092"></a>00092     <span class="keywordflow">if</span> ( composition.size() &gt; <a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4" title="OPTIMAL_COMPOSITION_NAME_LENGHT.">OPTIMAL_COMPOSITION_NAME_LENGHT</a> ) {
+<a name="l00093"></a>00093         QString shortComposition = composition.mid( 0, <a class="code" href="_interface_widget_8hpp.html#a01d921953bc6549b49f1827ba4d0e5a4" title="OPTIMAL_COMPOSITION_NAME_LENGHT.">OPTIMAL_COMPOSITION_NAME_LENGHT</a> - 3 );
+<a name="l00094"></a>00094         shortComposition.append(<span class="stringliteral">&quot;...&quot;</span>);
+<a name="l00095"></a>00095         ui-&gt;artistLabel-&gt;setText( shortComposition );
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097     <span class="keywordflow">else</span> {
+<a name="l00098"></a>00098         ui-&gt;artistLabel-&gt;setText( composition );
+<a name="l00099"></a>00099     }
+<a name="l00100"></a>00100     trayIcon-&gt;setToolTip( composition );
+<a name="l00101"></a>00101 }
+<a name="l00102"></a>00102 
+<a name="l00107"></a><a class="code" href="class_interface_widget.html#aa0286660e6d0ceb3ca19c378b44c59e1">00107</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#aa0286660e6d0ceb3ca19c378b44c59e1" title="InterfaceWidget::displayTime.">InterfaceWidget::displayTime</a>(QString time) {
+<a name="l00108"></a>00108     ui-&gt;timeLabel-&gt;setText(time);
+<a name="l00109"></a>00109 }
+<a name="l00110"></a>00110 
+<a name="l00114"></a><a class="code" href="class_interface_widget.html#a93b882d96082ac0283c039823675adf3">00114</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a93b882d96082ac0283c039823675adf3" title="InterfaceWidget::mouseDoubleClickEvent.">InterfaceWidget::mouseDoubleClickEvent</a>(QMouseEvent *) {
+<a name="l00115"></a>00115     showHideSlot();
+<a name="l00116"></a>00116 }
+<a name="l00117"></a>00117 
+<a name="l00122"></a><a class="code" href="class_interface_widget.html#a4986e36de3a34644cc7f60336188e426">00122</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a4986e36de3a34644cc7f60336188e426" title="InterfaceWidget::mouseMoveEvent.">InterfaceWidget::mouseMoveEvent</a>(QMouseEvent *me) {
+<a name="l00123"></a>00123 
+<a name="l00124"></a>00124     <span class="keyword">auto</span> globalX = me-&gt;globalX();
+<a name="l00125"></a>00125     <span class="keyword">auto</span> globalY = me-&gt;globalY();
+<a name="l00126"></a>00126     <span class="keyword">auto</span> localX = me-&gt;x();
+<a name="l00127"></a>00127     <span class="keyword">auto</span> localY = me-&gt;y();
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129     <span class="keyword">auto</span> moveToX = globalX;
+<a name="l00130"></a>00130     <span class="keyword">auto</span> moveToY = globalY;
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132     <span class="keywordflow">if</span> ( localX &gt; 0 ) {
+<a name="l00133"></a>00133         moveToX += localX;
+<a name="l00134"></a>00134     }
+<a name="l00135"></a>00135     <span class="keywordflow">if</span> ( localY &gt; 0 ) {
+<a name="l00136"></a>00136         moveToY += localY;
 <a name="l00137"></a>00137     }
-<a name="l00138"></a>00138     <span class="keywordflow">else</span> {
-<a name="l00139"></a>00139         show();
-<a name="l00140"></a>00140     }
-<a name="l00141"></a>00141 }
-<a name="l00142"></a>00142 
-<a name="l00147"></a>00147 <span class="keywordtype">void</span> InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) {
-<a name="l00148"></a>00148     <span class="keywordflow">switch</span> ( reason ) {
-<a name="l00149"></a>00149     <span class="keywordflow">case</span> QSystemTrayIcon::Trigger:
-<a name="l00150"></a>00150     <span class="keywordflow">case</span> QSystemTrayIcon::DoubleClick:
-<a name="l00151"></a>00151         showHideSlot();
-<a name="l00152"></a>00152         <span class="keywordflow">break</span>;
-<a name="l00153"></a>00153     <span class="keywordflow">default</span>:
-<a name="l00154"></a>00154         <span class="keywordflow">break</span>;
-<a name="l00155"></a>00155     }
-<a name="l00156"></a>00156 }
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139     move( moveToX, moveToY );
+<a name="l00140"></a>00140 }
+<a name="l00141"></a>00141 
+<a name="l00145"></a><a class="code" href="class_interface_widget.html#a6fb283827577dfa71183a2a64fff7480">00145</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a6fb283827577dfa71183a2a64fff7480" title="InterfaceWidget::disableStartServerAction.">InterfaceWidget::disableStartServerAction</a>() {
+<a name="l00146"></a>00146     startServerAction-&gt;setDisabled( <span class="keyword">true</span> );
+<a name="l00147"></a>00147     stopServerAction-&gt;setEnabled( <span class="keyword">true</span> );
+<a name="l00148"></a>00148     openMocpAction-&gt;setEnabled( <span class="keyword">true</span> );
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00154"></a><a class="code" href="class_interface_widget.html#a591b5f123431b60db0bd916214c82cb3">00154</a> <span class="keywordtype">void</span> <a class="code" href="class_interface_widget.html#a591b5f123431b60db0bd916214c82cb3" title="InterfaceWidget::disableStopServerAction.">InterfaceWidget::disableStopServerAction</a>() {
+<a name="l00155"></a>00155     stopServerAction-&gt;setDisabled( <span class="keyword">true</span> );
+<a name="l00156"></a>00156     startServerAction-&gt;setEnabled( <span class="keyword">true</span> );
+<a name="l00157"></a>00157     openMocpAction-&gt;setDisabled( <span class="keyword">true</span> );
+<a name="l00158"></a>00158 }
+<a name="l00159"></a>00159 
+<a name="l00163"></a>00163 <span class="keywordtype">void</span> InterfaceWidget::showHideSlot() {
+<a name="l00164"></a>00164     <span class="keywordflow">if</span> ( isVisible() ) {
+<a name="l00165"></a>00165         hide();
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167     <span class="keywordflow">else</span> {
+<a name="l00168"></a>00168         show();
+<a name="l00169"></a>00169     }
+<a name="l00170"></a>00170 }
+<a name="l00171"></a>00171 
+<a name="l00176"></a>00176 <span class="keywordtype">void</span> InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) {
+<a name="l00177"></a>00177     <span class="keywordflow">switch</span> ( reason ) {
+<a name="l00178"></a>00178     <span class="keywordflow">case</span> QSystemTrayIcon::Trigger:
+<a name="l00179"></a>00179     <span class="keywordflow">case</span> QSystemTrayIcon::DoubleClick:
+<a name="l00180"></a>00180         showHideSlot();
+<a name="l00181"></a>00181         <span class="keywordflow">break</span>;
+<a name="l00182"></a>00182     <span class="keywordflow">default</span>:
+<a name="l00183"></a>00183         <span class="keywordflow">break</span>;
+<a name="l00184"></a>00184     }
+<a name="l00185"></a>00185 }
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -218,7 +238,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 14 2012 12:54:40 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon May 14 2012 14:24:51 for Mocp Interface by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

@@ -8,14 +8,27 @@
 #include <QMessageBox>
 #include <QDialog>
 #include <QDesktopWidget>
+#include <QtGui/QMouseEvent>
 
 #include "MocpWatcher.hpp"
-#include <QtGui>
 
+/*!
+ * \file InterfaceWidget.hpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
+
+/*!
+ * \namespace Ui
+ * \brief Standart namespace from QtDesigner.
+ */
 namespace Ui {
 class InterfaceWidget;
 }
 
+/*!
+ * \enum SERVER_STATUS
+ * \brief The SERVER_STATUS enum
+ */
 enum SERVER_STATUS{
     OFF, /*!< Enum value Server Off. */
     ON /*!< Enum value Server On. */
@@ -37,7 +50,8 @@ constexpr int OPTIMAL_COMPOSITION_NAME_LENGHT = 42;
 constexpr int DOWN_HEIGHT_OFFSET = 10;
 
 /*!
- * \brief The InterfaceWidget class
+ * \class InterfaceWidget
+ * \brief The InterfaceWidget class implement interface for mocp player.
  */
 class InterfaceWidget : public QWidget {
     Q_OBJECT
@@ -51,7 +65,9 @@ public:
     void    displayComposition( QString composition );
     void    displayTime( QString time );
 
-    void    mousePressEvent(QMouseEvent * me);
+    void    mouseDoubleClickEvent(QMouseEvent *);
+
+    void    mouseMoveEvent(QMouseEvent * me);
 
 public slots:
 
@@ -72,7 +88,7 @@ private:
 
     MocpWatcher * watcher;
 
-    Ui::InterfaceWidget *ui
+    Ui::InterfaceWidget *ui;
 
 private slots:
 

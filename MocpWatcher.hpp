@@ -5,10 +5,15 @@
 #include <QProcess>
 #include <QDebug>
 
-class InterfaceWidget;
-
 /*!
- * \brief The MocpWatcher class
+ * \file MocpWatcher.hpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
+
+class InterfaceWidget;
+/*!
+ * \class MocpWatcher
+ * \brief The MocpWatcher class work with mocp server
  */
 class MocpWatcher : public QThread {
     Q_OBJECT

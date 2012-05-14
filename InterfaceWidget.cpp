@@ -2,8 +2,14 @@
 #include "ui_InterfaceWidget.h"
 
 /*!
+ * \file InterfaceWidget.cpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
+
+
+/*!
  * \brief InterfaceWidget::InterfaceWidget
- * \param parent QWidget *
+ * \param parent Pointer on parent QWidget.
  */
 InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip ), ui( new Ui::InterfaceWidget ) {
     ui->setupUi(this);
@@ -63,7 +69,7 @@ InterfaceWidget::~InterfaceWidget() {
 
 /*!
  * \brief InterfaceWidget::displayServerStatus
- * \param serverStatus enum SERVER_STATUS
+ * \param serverStatus Instance of enum SERVER_STATUS.
  */
 void InterfaceWidget::displayServerStatus(SERVER_STATUS serverStatus) {
     switch ( serverStatus ) {
@@ -80,7 +86,7 @@ void InterfaceWidget::displayServerStatus(SERVER_STATUS serverStatus) {
 
 /*!
  * \brief InterfaceWidget::displayComposition
- * \param composition QString
+ * \param composition QString which contains atist and composition name.
  */
 void InterfaceWidget::displayComposition(QString composition) {
     if ( composition.size() > OPTIMAL_COMPOSITION_NAME_LENGHT ) {
@@ -96,18 +102,41 @@ void InterfaceWidget::displayComposition(QString composition) {
 
 /*!
  * \brief InterfaceWidget::displayTime
- * \param time QString
+ * \param time QString which containe composition time.
  */
 void InterfaceWidget::displayTime(QString time) {
     ui->timeLabel->setText(time);
 }
 
 /*!
- * \brief InterfaceWidget::mousePressEvent
- * \param me QMouseEvent *
+ * \brief InterfaceWidget::mouseDoubleClickEvent
  */
-void InterfaceWidget::mousePressEvent(QMouseEvent * me ) {
+void InterfaceWidget::mouseDoubleClickEvent(QMouseEvent *) {
     showHideSlot();
+}
+
+/*!
+ * \brief InterfaceWidget::mouseMoveEvent
+ * \param me Pointer on QMouseEvent.
+ */
+void InterfaceWidget::mouseMoveEvent(QMouseEvent *me) {
+
+    auto globalX = me->globalX();
+    auto globalY = me->globalY();
+    auto localX = me->x();
+    auto localY = me->y();
+
+    auto moveToX = globalX;
+    auto moveToY = globalY;
+
+    if ( localX > 0 ) {
+        moveToX += localX;
+    }
+    if ( localY > 0 ) {
+        moveToY += localY;
+    }
+
+    move( moveToX, moveToY );
 }
 
 /*!
