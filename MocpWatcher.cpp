@@ -120,6 +120,9 @@ void MocpWatcher::openMocpSlot() {
     QProcess::startDetached( x_terminal_emulator + " " + mocp  );
 }
 
+/**
+* @brief MocpWatcher::mocpPlay
+*/
 void MocpWatcher::mocpPlay(){
     QStringList play;
     play << "--toggle-pause";
