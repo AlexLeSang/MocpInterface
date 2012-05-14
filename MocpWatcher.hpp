@@ -7,6 +7,9 @@
 
 class InterfaceWidget;
 
+/*!
+ * \brief The MocpWatcher class
+ */
 class MocpWatcher : public QThread {
     Q_OBJECT
 
@@ -25,8 +28,8 @@ public slots:
 
 private:
 
-    QProcess * process;
-    InterfaceWidget * interfaceWidget;
+    QProcess * process; /*!< Watch process pointer */
+    InterfaceWidget * interfaceWidget; /*! Interface pointer */
     QString mocp;
     QString x_terminal_emulator;
     QStringList args;

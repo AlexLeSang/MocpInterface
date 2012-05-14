@@ -1,9 +1,9 @@
 #include <QApplication>
 #include "InterfaceWidget.hpp"
 
-/**
- * @author Olexandr Halushko alexlesang@gmail.com
- * @section LICENSE
+/*!
+ * \author Olexandr Halushko alexlesang@gmail.com
+ * \section LICENSE
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -16,10 +16,10 @@
  * General Public License for more details at
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @brief main
- * @param argc
- * @param argv
- * @return
+ * \brief main
+ * \param argc int
+ * \param argv char *[]
+ * \return
  */
 
 int main(int argc, char *argv[]) {
