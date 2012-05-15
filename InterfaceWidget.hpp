@@ -65,9 +65,6 @@ public:
     void    displayComposition( QString composition );
     void    displayTime( QString time );
 
-    void    mouseDoubleClickEvent(QMouseEvent *);
-
-    void    mouseMoveEvent(QMouseEvent * me);
 
 public slots:
 
@@ -89,6 +86,9 @@ private:
     MocpWatcher * watcher;
 
     Ui::InterfaceWidget *ui;
+
+    void    mouseDoubleClickEvent(QMouseEvent *);
+    void    mouseMoveEvent(QMouseEvent * me);
 
 private slots:
 
