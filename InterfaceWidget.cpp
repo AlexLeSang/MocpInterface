@@ -15,8 +15,12 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     showHideAction = new QAction( tr("Show/&hide"), contextMenu );
     openMocpAction = new QAction( tr("Open mocp"), contextMenu );
     playMocpAction = new QAction( tr("&Play/Pause"), contextMenu );
+    nextMocpAction = new QAction(tr("&Next"), contextMenu);
+    prevMocpAction = new QAction(tr("P&rev"), contextMenu);
 
     contextMenu->addAction( playMocpAction );
+    contextMenu->addAction( nextMocpAction );
+    contextMenu->addAction( prevMocpAction );
     contextMenu->addAction( showHideAction );
     contextMenu->addSeparator();
     contextMenu->addAction( openMocpAction );
@@ -26,14 +30,17 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     contextMenu->addAction( closeAction );
 
 
+
     watcher = new MocpWatcher( this );
 
     connect( stopServerAction, SIGNAL( triggered() ), watcher, SLOT( stopServerSlot() ) );
     connect( startServerAction, SIGNAL( triggered() ), watcher, SLOT( startServerSlot() ) );
     connect( showHideAction, SIGNAL( triggered() ), this, SLOT( showHideSlot() ) );
     connect( openMocpAction, SIGNAL( triggered() ), watcher, SLOT( openMocpSlot() ) );
-    connect(playMocpAction,SIGNAL(triggered()),watcher,SLOT(mocpPlay()));
+    connect(playMocpAction,SIGNAL(triggered()),watcher,SLOT(playMocpSlot()));
     connect( closeAction, SIGNAL( triggered() ), qApp, SLOT( quit() ) );
+    connect(nextMocpAction,SIGNAL(triggered()),watcher,SLOT(nextMocpSlot()));
+    connect(prevMocpAction,SIGNAL(triggered()),watcher,SLOT(prevMocpSlot()));
 
     trayIcon = new QSystemTrayIcon( this );
     trayIcon->setContextMenu( contextMenu );
@@ -140,7 +147,7 @@ void InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) 
         showHideSlot();
         break;
     case QSystemTrayIcon::MiddleClick:
-        watcher->mocpPlay();
+        watcher->playMocpSlot();
         break;
     default:
         break;

@@ -14,13 +14,16 @@ public:
     explicit MocpWatcher( InterfaceWidget * interface );
     ~MocpWatcher();
     void run();
+
 signals:
     
 public slots:
     void    interruptReadLoopSlot();
     void    stopServerSlot();
     void    startServerSlot();
-    void    mocpPlay();
+    void    playMocpSlot();
+    void    nextMocpSlot();
+    void    prevMocpSlot();
     void    openMocpSlot();
 private:
     QProcess * process;

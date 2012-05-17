@@ -114,17 +114,34 @@ void MocpWatcher::startServerSlot() {
 }
 
 /**
+* @brief MocpWatcher::mocpPlay
+*/
+void MocpWatcher::playMocpSlot()
+{
+    QStringList play;
+    play << "--toggle-pause";
+    QProcess::startDetached( mocp, play );
+}
+
+void MocpWatcher::nextMocpSlot()
+{
+    QStringList next;
+    next << "--next";
+    QProcess::startDetached( mocp, next );
+}
+
+void MocpWatcher::prevMocpSlot()
+{
+    QStringList prev;
+    prev << "--previous";
+    QProcess::startDetached( mocp, prev );
+}
+
+/**
 * @brief MocpWatcher::openMocpSlot
 */
 void MocpWatcher::openMocpSlot() {
     QProcess::startDetached( x_terminal_emulator + " " + mocp  );
 }
 
-/**
-* @brief MocpWatcher::mocpPlay
-*/
-void MocpWatcher::mocpPlay(){
-    QStringList play;
-    play << "--toggle-pause";
-    QProcess::startDetached( mocp, play );
-}
+

@@ -44,6 +44,8 @@ class InterfaceWidget : public QWidget {
     QAction * showHideAction;
     QAction * openMocpAction;
     QAction * playMocpAction;
+    QAction * nextMocpAction;
+    QAction * prevMocpAction;
     MocpWatcher * watcher;
 
 public:
