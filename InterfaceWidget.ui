@@ -59,6 +59,13 @@
     </disabled>
    </palette>
   </property>
+  <property name="font">
+   <font>
+    <italic>false</italic>
+    <underline>false</underline>
+    <strikeout>false</strikeout>
+   </font>
+  </property>
   <property name="contextMenuPolicy">
    <enum>Qt::ActionsContextMenu</enum>
   </property>

@@ -33,6 +33,20 @@ enum SERVER_STATUS{
     OFF, /*!< Enum value Server Off. */
     ON /*!< Enum value Server On. */
 };
+<<<<<<< HEAD
+/**
+* Optimal comparison name lenght is length of QString which is perfect for InterfaceWidget
+*
+* @brief OPTIMAL_COMPOSITION_NAME_LENGHT
+*/
+constexpr int OPTIMAL_COMPOSITION_NAME_LENGHT = 42;
+/**
+* This is offsert from down corner of the screen for InterfaceWidget
+*
+* @brief DOWN_HEIGHT_OFFSET
+*/
+constexpr int DOWN_HEIGHT_OFFSET = 27;
+=======
 
 /*!
  * Optimal comparison name lenght is length of QString which is perfect for InterfaceWidget
@@ -48,6 +62,7 @@ constexpr int OPTIMAL_COMPOSITION_NAME_LENGHT = 42;
  */
 
 constexpr int DOWN_HEIGHT_OFFSET = 10;
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 
 /*!
  * \class InterfaceWidget
@@ -55,6 +70,23 @@ constexpr int DOWN_HEIGHT_OFFSET = 10;
  */
 class InterfaceWidget : public QWidget {
     Q_OBJECT
+<<<<<<< HEAD
+    
+    QSystemTrayIcon * trayIcon;
+
+    QMenu * contextMenu;
+
+    QAction * stopServerAction;
+    QAction * startServerAction;
+    QAction * closeAction;
+    QAction * showHideAction;
+    QAction * openMocpAction;
+    QAction * playMocpAction;
+    QAction * nextMocpAction;
+    QAction * prevMocpAction;
+    MocpWatcher * watcher;
+=======
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 
 public:
 
@@ -71,6 +103,10 @@ public slots:
     void    disableStartServerAction();
     void    disableStopServerAction();
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 private:
 
     QSystemTrayIcon * trayIcon;
