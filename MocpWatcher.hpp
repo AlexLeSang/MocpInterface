@@ -5,8 +5,16 @@
 #include <QProcess>
 #include <QDebug>
 
-class InterfaceWidget;
+/*!
+ * \file MocpWatcher.hpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
 
+class InterfaceWidget;
+/*!
+ * \class MocpWatcher
+ * \brief The MocpWatcher class work with mocp server
+ */
 class MocpWatcher : public QThread {
     Q_OBJECT
 
@@ -26,8 +34,14 @@ public slots:
     void    prevMocpSlot();
     void    openMocpSlot();
 private:
+<<<<<<< HEAD
     QProcess * process;
     InterfaceWidget * interfaceWidget;
+=======
+
+    QProcess * process; /*!< Watch process pointer */
+    InterfaceWidget * interfaceWidget; /*! Interface pointer */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
     QString mocp;
     QString x_terminal_emulator;
     QStringList args;

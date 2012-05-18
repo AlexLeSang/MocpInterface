@@ -1,9 +1,23 @@
 #include "InterfaceWidget.hpp"
 #include "ui_InterfaceWidget.h"
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::InterfaceWidget
 * @param parent
 */
+=======
+
+/*!
+ * \file InterfaceWidget.cpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
+
+
+/*!
+ * \brief InterfaceWidget::InterfaceWidget
+ * \param parent Pointer on parent QWidget.
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip ), ui( new Ui::InterfaceWidget ) {
     ui->setupUi(this);
 
@@ -57,9 +71,16 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
 
     watcher->start();
 }
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::~InterfaceWidget
 */
+=======
+
+/*!
+ * \brief InterfaceWidget::~InterfaceWidget
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 InterfaceWidget::~InterfaceWidget() {
     watcher->interruptReadLoopSlot();
     while ( watcher->isRunning() ) {
@@ -68,10 +89,18 @@ InterfaceWidget::~InterfaceWidget() {
     delete watcher;
     delete ui;
 }
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::displayServerStatus
 * @param serverStatus
 */
+=======
+
+/*!
+ * \brief InterfaceWidget::displayServerStatus
+ * \param serverStatus Instance of enum SERVER_STATUS.
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::displayServerStatus(SERVER_STATUS serverStatus) {
     switch ( serverStatus ) {
     case OFF:
@@ -84,10 +113,18 @@ void InterfaceWidget::displayServerStatus(SERVER_STATUS serverStatus) {
         break;
     }
 }
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::displayComposition
 * @param composition
 */
+=======
+
+/*!
+ * \brief InterfaceWidget::displayComposition
+ * \param composition QString which contains atist and composition name.
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::displayComposition(QString composition) {
     if ( composition.size() > OPTIMAL_COMPOSITION_NAME_LENGHT ) {
         QString shortComposition = composition.mid( 0, OPTIMAL_COMPOSITION_NAME_LENGHT - 3 );
@@ -99,35 +136,92 @@ void InterfaceWidget::displayComposition(QString composition) {
     }
     trayIcon->setToolTip( composition );
 }
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::displayTime
 * @param time
 */
+=======
+
+/*!
+ * \brief InterfaceWidget::displayTime
+ * \param time QString which containe composition time.
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::displayTime(QString time) {
     ui->timeLabel->setText(time);
 }
 
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::disableStartServerAction
 */
+=======
+/*!
+ * \brief InterfaceWidget::mouseDoubleClickEvent
+ */
+void InterfaceWidget::mouseDoubleClickEvent(QMouseEvent *) {
+    showHideSlot();
+}
+
+/*!
+ * \brief InterfaceWidget::mouseMoveEvent
+ * \param me Pointer on QMouseEvent.
+ */
+void InterfaceWidget::mouseMoveEvent(QMouseEvent *me) {
+
+    auto globalX = me->globalX();
+    auto globalY = me->globalY();
+    auto localX = me->x();
+    auto localY = me->y();
+
+    auto moveToX = globalX;
+    auto moveToY = globalY;
+
+    if ( localX > 0 ) {
+        moveToX += localX;
+    }
+    if ( localY > 0 ) {
+        moveToY += localY;
+    }
+
+    move( moveToX, moveToY );
+}
+
+/*!
+ * \brief InterfaceWidget::disableStartServerAction
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::disableStartServerAction() {
 startServerAction->setDisabled( true );
  stopServerAction->setEnabled( true );
   openMocpAction->setEnabled( true );
 }
 
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::disableStopServerAction
 */
+=======
+/*!
+ * \brief InterfaceWidget::disableStopServerAction
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::disableStopServerAction() {
   stopServerAction->setDisabled( true );
   startServerAction->setEnabled( true );
   openMocpAction->setDisabled( true );
 }
 
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::showHideSlot
 */
+=======
+/*!
+ * \brief InterfaceWidget::showHideSlot
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::showHideSlot() {
     if ( isVisible() ) {
         hide();
@@ -136,10 +230,18 @@ void InterfaceWidget::showHideSlot() {
         show();
     }
 }
+<<<<<<< HEAD
 /**
 * @brief InterfaceWidget::trayIconClicked
 * @param reason
 */
+=======
+
+/*!
+ * \brief InterfaceWidget::trayIconClicked
+ * \param reason QSystemTrayIcon::ActivationReason
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) {
     switch ( reason ) {
     case QSystemTrayIcon::Trigger:

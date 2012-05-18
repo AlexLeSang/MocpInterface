@@ -2,10 +2,22 @@
 
 #include "InterfaceWidget.hpp"
 
+<<<<<<< HEAD
 /**
 * @brief MocpWatcher::MocpWatcher
 * @param interface
 */
+=======
+/*!
+ * \file MocpWatcher.cpp
+ * \author Olexandr Halushko alexlesang@gmail.com
+ */
+
+/*!
+ * \brief MocpWatcher::MocpWatcher
+ * \param interface Pointer on interface widget.
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
     x_terminal_emulator = "xterm -geometry 200x40+0+0 ";
@@ -13,16 +25,28 @@ MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interfa
     interruptFlag = false;
 }
 
+<<<<<<< HEAD
 /**
 * @brief MocpWatcher::~MocpWatcher
 */
+=======
+/*!
+ * \brief MocpWatcher::~MocpWatcher
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 MocpWatcher::~MocpWatcher() {
     delete process;
 }
 
+<<<<<<< HEAD
 /**
 * @brief MocpWatcher::run
 */
+=======
+/*!
+ * \brief MocpWatcher::run
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void MocpWatcher::run() {
     process = new QProcess;
     QString out;
@@ -72,7 +96,7 @@ void MocpWatcher::run() {
 
         int totalTimePos = out.indexOf("TotalTime: "); // 11
         int timeLeftPos = out.indexOf("TimeLeft: "); // 10
-        int timeLeftEndPos = out.indexOf("TotalSec");
+        int timeLeftEndPos = out.indexOf("TotalSec: ");
 
         totalTime = out.mid(totalTimePos + 11, timeLeftPos - 12 - totalTimePos);
         timeLeft = out.mid(timeLeftPos + 10, timeLeftEndPos - 11 - timeLeftPos);
@@ -84,18 +108,30 @@ void MocpWatcher::run() {
     }
 }
 
+<<<<<<< HEAD
 /**
 * Set interrupt flag and stop watch loop
 *
 * @brief MocpWatcher::interruptReadLoopSlot
 */
+=======
+/*!
+ * \brief MocpWatcher::interruptReadLoopSlot
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void MocpWatcher::interruptReadLoopSlot() {
     interruptFlag = true;
 }
 
+<<<<<<< HEAD
 /**
 * @brief MocpWatcher::stopServerSlot
 */
+=======
+/*!
+ * \brief MocpWatcher::stopServerSlot
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void MocpWatcher::stopServerSlot() {
     QStringList stopList;
     stopList << "-x";
@@ -103,9 +139,15 @@ void MocpWatcher::stopServerSlot() {
     interfaceWidget->disableStopServerAction();
 }
 
+<<<<<<< HEAD
 /**
 * @brief MocpWatcher::startServerSlot
 */
+=======
+/*!
+ * \brief MocpWatcher::startServerSlot
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void MocpWatcher::startServerSlot() {
     QStringList stopList;
     stopList << "-S";
@@ -113,6 +155,7 @@ void MocpWatcher::startServerSlot() {
     interfaceWidget->disableStartServerAction();
 }
 
+<<<<<<< HEAD
 /**
 * @brief MocpWatcher::mocpPlay
 */
@@ -140,6 +183,11 @@ void MocpWatcher::prevMocpSlot()
 /**
 * @brief MocpWatcher::openMocpSlot
 */
+=======
+/*!
+ * \brief MocpWatcher::openMocpSlot
+ */
+>>>>>>> 6015f573db8e05038e28d1c84f685c7da6350b88
 void MocpWatcher::openMocpSlot() {
     QProcess::startDetached( x_terminal_emulator + " " + mocp  );
 }
