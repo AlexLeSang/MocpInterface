@@ -39,7 +39,7 @@ enum SERVER_STATUS{
  *
  * \brief OPTIMAL_COMPOSITION_NAME_LENGHT
  */
-constexpr int OPTIMAL_COMPOSITION_NAME_LENGHT = 42;
+constexpr int OPTIMAL_COMPOSITION_NAME_LENGHT = 41;
 
 /*!
  * This is offsert from down corner of the screen for InterfaceWidget

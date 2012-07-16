@@ -12,8 +12,9 @@
  */
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
-    x_terminal_emulator = "xterm -geometry 200x40+0+0 ";
-    args << "-i";
+    x_terminal_emulator = "xterm -geometry 200x40+75+100";
+//    args << "-i";
+    args << "-Q%state'\n'%artist'\n'%song'\n'%tt'\n'%tl";
     interruptFlag = false;
 }
 
@@ -30,10 +31,10 @@ MocpWatcher::~MocpWatcher() {
 void MocpWatcher::run() {
     process = new QProcess;
     QString out;
+    QString status;
     QString artist;
     QString song;
     QString totalTime;
-    QString timeLeft;
     QByteArray outputByteArray;
 
     while( !interruptFlag ) {
@@ -43,8 +44,9 @@ void MocpWatcher::run() {
         process->waitForFinished();
         outputByteArray = process->readAll();
         out = QString::fromUtf8(outputByteArray.data(),outputByteArray.size());
-
-        if ( out.isEmpty() ) {
+        // Check status
+        status = out.left(out.indexOf('\n') - 1);
+        if ( status.isEmpty() ) {
             interfaceWidget->displayServerStatus( OFF );
             interfaceWidget->displayComposition("");
             interfaceWidget->displayTime("00:00/00:00");
@@ -56,26 +58,24 @@ void MocpWatcher::run() {
             interfaceWidget->disableStartServerAction();
         }
 
-        if ( out.indexOf( "State: STOP" ) != -1 ) {
-            interfaceWidget->displayComposition("");
-            interfaceWidget->displayTime("00:00/00:00");
-            continue;
-        }
+        // Get artist
+        out.remove(0, status.length() + 3);
+        artist = out.left(out.indexOf('\n') - 1);
 
-        int artistStartPos = out.indexOf( "Artist: " ) + 8;
-        int songStartPos = out.indexOf( "SongTitle: " ); // 10
-        int songEndPos = out.indexOf( "Album:" ) - 1;
-        artist = out.mid ( artistStartPos, songStartPos - artistStartPos - 1 ) ;
-        song = out.mid( songStartPos + 11, songEndPos - ( songStartPos + 11 ) );
+        // Get song
+        out.remove(0, artist.length() + 3);
+        song = out.left(out.indexOf('\n') - 1);
 
-        int totalTimePos = out.indexOf("TotalTime: "); // 11
-        int timeLeftPos = out.indexOf("TimeLeft: "); // 10
-        int timeLeftEndPos = out.indexOf("TotalSec: ");
+        // Get total time
+        out.remove(0, song.length() + 3);
+        totalTime = out.left(out.indexOf('\n') - 1);
 
-        totalTime = out.mid(totalTimePos + 11, timeLeftPos - 12 - totalTimePos);
-        timeLeft = out.mid(timeLeftPos + 10, timeLeftEndPos - 11 - timeLeftPos);
+        // Get time left
+        out.remove(0, totalTime.length() + 3);
+        out.chop(1);
+
         interfaceWidget->displayComposition(artist + ": " + song);
-        interfaceWidget->displayTime(timeLeft + "/" + totalTime);
+        interfaceWidget->displayTime(out + "/" + totalTime);
     }
 }
 

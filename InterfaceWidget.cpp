@@ -112,7 +112,7 @@ void InterfaceWidget::displayTime(QString time) {
  * \brief InterfaceWidget::mouseDoubleClickEvent
  */
 void InterfaceWidget::mouseDoubleClickEvent(QMouseEvent *) {
-    showHideSlot();
+    watcher->openMocpSlot();
 }
 
 /*!
@@ -136,7 +136,19 @@ void InterfaceWidget::mouseMoveEvent(QMouseEvent *me) {
         moveToY += localY;
     }
 
-    move( moveToX, moveToY );
+    auto horEnd = moveToX + width();
+
+    auto vertEnd = moveToY + height();
+
+    auto desktopWidth = QApplication::desktop()->width();
+    auto desktopHeight = QApplication::desktop()->height();
+
+    if ( ( horEnd > desktopWidth ) || ( vertEnd > desktopHeight ) ) {
+        return;
+    }
+    else {
+        move( moveToX, moveToY );
+    }
 }
 
 /*!
@@ -176,7 +188,6 @@ void InterfaceWidget::showHideSlot() {
 void InterfaceWidget::trayIconClicked(QSystemTrayIcon::ActivationReason reason) {
     switch ( reason ) {
     case QSystemTrayIcon::Trigger:
-    case QSystemTrayIcon::DoubleClick:
         showHideSlot();
         break;
     default:
