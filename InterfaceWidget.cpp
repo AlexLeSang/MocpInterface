@@ -26,14 +26,14 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     prevTrack = new QAction( tr("&Prev track"), contextMenu );
 
     contextMenu->addAction( showHideAction );
+    contextMenu->addAction( togglePause );
+    contextMenu->addAction( nextTrack );
+    contextMenu->addAction( prevTrack );
     contextMenu->addSeparator();
     contextMenu->addAction( openMocpAction );
     contextMenu->addAction( startServerAction );
     contextMenu->addAction( stopServerAction );
     contextMenu->addSeparator();
-    contextMenu->addAction( togglePause );
-    contextMenu->addAction( nextTrack );
-    contextMenu->addAction( prevTrack );
     contextMenu->addSeparator();
     contextMenu->addAction( closeAction );
 
