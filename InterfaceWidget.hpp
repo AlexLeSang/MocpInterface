@@ -1,9 +1,9 @@
 #ifndef INTERFACEWIDGET_HPP
 #define INTERFACEWIDGET_HPP
 
-#include <QtGui/QWidget>
-#include <QtGui/QMenu>
-#include <QtGui/QAction>
+#include <QWidget>
+#include <QMenu>
+#include <QAction>
 #include <QSystemTrayIcon>
 #include <QMessageBox>
 #include <QDialog>
@@ -82,6 +82,9 @@ private:
     QAction * closeAction;
     QAction * showHideAction;
     QAction * openMocpAction;
+    QAction * nextTrack;
+    QAction * prevTrack;
+    QAction * togglePause;
 
     MocpWatcher * watcher;
 

@@ -21,6 +21,9 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     closeAction = new QAction( tr("&Close"), contextMenu );
     showHideAction = new QAction( tr("Show/&hide"), contextMenu );
     openMocpAction = new QAction( tr("Open mocp"), contextMenu );
+    togglePause = new QAction( tr("&Toggle pause"), contextMenu );
+    nextTrack = new QAction( tr("&Next track"), contextMenu );
+    prevTrack = new QAction( tr("&Prev track"), contextMenu );
 
     contextMenu->addAction( showHideAction );
     contextMenu->addSeparator();
@@ -28,12 +31,21 @@ InterfaceWidget::InterfaceWidget(QWidget *parent) : QWidget( parent, Qt::ToolTip
     contextMenu->addAction( startServerAction );
     contextMenu->addAction( stopServerAction );
     contextMenu->addSeparator();
+    contextMenu->addAction( togglePause );
+    contextMenu->addAction( nextTrack );
+    contextMenu->addAction( prevTrack );
+    contextMenu->addSeparator();
     contextMenu->addAction( closeAction );
 
     watcher = new MocpWatcher( this );
 
     connect( stopServerAction, SIGNAL( triggered() ), watcher, SLOT( stopServerSlot() ) );
     connect( startServerAction, SIGNAL( triggered() ), watcher, SLOT( startServerSlot() ) );
+
+    connect( togglePause, SIGNAL( triggered() ), watcher, SLOT( togglePauseSlot() ) );
+    connect( nextTrack, SIGNAL( triggered() ), watcher, SLOT( nextTrackSlot() ) );
+    connect( prevTrack, SIGNAL( triggered() ), watcher, SLOT( prevTrackSlot() ) );
+
     connect( showHideAction, SIGNAL( triggered() ), this, SLOT( showHideSlot() ) );
     connect( openMocpAction, SIGNAL( triggered() ), watcher, SLOT( openMocpSlot() ) );
 

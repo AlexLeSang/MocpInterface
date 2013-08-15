@@ -31,6 +31,10 @@ public slots:
     void    startServerSlot();
     void    openMocpSlot();
 
+    void    togglePauseSlot();
+    void    nextTrackSlot();
+    void    prevTrackSlot();
+
 private:
 
     QProcess * process; /*!< Watch process pointer */

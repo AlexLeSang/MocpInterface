@@ -12,7 +12,7 @@
  */
 MocpWatcher::MocpWatcher( InterfaceWidget *interface ) : interfaceWidget(interface) {
     mocp = "/usr/bin/mocp";
-    x_terminal_emulator = "xterm -geometry 200x40+75+100";
+    x_terminal_emulator = "xterm -bg black -fg gray90 -geometry 200x40+75+100";
 //    args << "-i";
     args << "-Q%state'\n'%artist'\n'%song'\n'%tt'\n'%tl";
     interruptFlag = false;
@@ -110,5 +110,35 @@ void MocpWatcher::startServerSlot() {
  * \brief MocpWatcher::openMocpSlot
  */
 void MocpWatcher::openMocpSlot() {
-    QProcess::startDetached( x_terminal_emulator + " " + mocp  );
+  QProcess::startDetached( x_terminal_emulator + " " + mocp  );
+}
+
+/*!
+ * \brief MocpWatcher::togglePauseSlot
+ */
+void MocpWatcher::togglePauseSlot()
+{
+  QStringList stopList;
+  stopList << "-G";
+  QProcess::startDetached( mocp, stopList );
+}
+
+/*!
+ * \brief MocpWatcher::nextTrackSlot
+ */
+void MocpWatcher::nextTrackSlot()
+{
+  QStringList stopList;
+  stopList << "-f";
+  QProcess::startDetached( mocp, stopList );
+}
+
+/*!
+ * \brief MocpWatcher::prevTrackSlot
+ */
+void MocpWatcher::prevTrackSlot()
+{
+  QStringList stopList;
+  stopList << "-r";
+  QProcess::startDetached( mocp, stopList );
 }
